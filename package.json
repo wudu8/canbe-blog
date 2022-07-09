@@ -1,0 +1,8 @@
+{
+  "name": "freedom-blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/wudu8/freedom-blog.git",
+  "author": "‘ <y2386166796@163.com>",
+  "license": "MIT"
+}
