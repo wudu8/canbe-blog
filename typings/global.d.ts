@@ -10,6 +10,8 @@ declare global {
 
   type SafeAny = any;
 
+  type Fn = () => void;
+
   interface ImportMetaEnv {
     readonly VITE_APP_TITLE: string;
     readonly VITE_BASE_URL: string;
@@ -17,6 +19,12 @@ declare global {
     readonly VITE_MOCK_ENABLED: boolean;
     readonly VITE_APP_BASE_API: string;
     readonly VITE_APP_SERVER_URL: string;
+
+    readonly VITE_APP_FRONT_TITLE: string;
+    readonly VITE_APP_ADMIN_TITLE: string;
+    readonly VITE_APP_LOGO: string;
+    readonly VITE_APP_YEAR: string;
+    readonly VITE_APP_PREFIX: string;
   }
 
   interface ImportMeta {

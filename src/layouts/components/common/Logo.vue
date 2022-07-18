@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useAppStore } from '@/store';
+import { useClasses } from '@/hooks';
 
 interface LogoProps {
   systemTitle: string;
@@ -7,25 +8,32 @@ interface LogoProps {
 const props = withDefaults(defineProps<LogoProps>(), {});
 
 const appStore = useAppStore();
+const logoClasses = useClasses('logo');
+const titleClasses = useClasses('title');
 </script>
 <template>
   <div class="logo-wrapper">
-    <a-space>
-      <img :src="appStore.logo" alt="logo" class="canbe-logo" />
-      <a-typography-title :style="{ margin: 0, fontSize: '18px' }" :heading="5">
-        {{ props.systemTitle }}
-      </a-typography-title>
-    </a-space>
+    <img :src="appStore.logo" alt="logo" :class="logoClasses" />
+    <span :class="titleClasses">
+      {{ props.systemTitle }}
+    </span>
   </div>
 </template>
 
 <style lang="less" scoped>
 .logo-wrapper {
-  display: inline-block;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  height: 100%;
 
-  .canbe-logo {
+  .@{app-prefix}-logo {
     width: auto;
     height: 34px;
+  }
+
+  .@{app-prefix}-title {
+    font-size: 22px;
   }
 }
 </style>

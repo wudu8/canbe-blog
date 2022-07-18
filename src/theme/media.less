@@ -1,0 +1,38 @@
+/* 响应式布局处理 */
+
+/* 门户响应式布局 */
+
+/* 内容区响应式布局 */
+@media screen and (max-width: 1439px) {
+  .@{app-prefix}-blog-layout{
+    .canbe-content {
+      width: 1190px !important;
+    }
+  }
+}
+@media screen and (min-width: 1440px) and (max-width: 1535px) {
+  .@{app-prefix}-blog-layout{
+    .canbe-content {
+      width: 1280px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .@{app-prefix}-blog-layout{
+    .canbe-content {
+      width: 80% !important;
+    }
+  }
+}
+.@{app-prefix}-blog-layout{
+  .@{app-prefix}-content{
+    width: 1380px;
+    max-width: 100%;
+    min-height: calc(100vh - (@protal-header-height + @protal-footer-height + 16px));
+    margin: 0 auto;
+    background: #fff;
+  }
+}
+
+/* 门户响应式布局 */

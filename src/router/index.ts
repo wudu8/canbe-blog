@@ -27,4 +27,6 @@ export function setupRouter(app: App<Element>): void {
   createRouterGuards(router);
 }
 
+export * from './path';
+
 export default router;

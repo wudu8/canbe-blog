@@ -9,7 +9,7 @@ export interface LocaleContext {
   changeLocale: (value: string) => void;
 }
 
-export default function useLocale(): LocaleContext {
+export function useLocale(): LocaleContext {
   const i18 = useI18n();
   const currentLocale = computed(() => {
     return i18.locale.value;

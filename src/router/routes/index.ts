@@ -1,7 +1,9 @@
 import { sortRoutes } from '@/router/utils';
+import { concat } from 'lodash-es';
 import { type RouteRecordRaw } from 'vue-router';
+import { whiteRoutes } from '../guards/whiteRoutesList';
 
-const allModules = import.meta.globEager('./*.ts'),
+const allModules = import.meta.globEager('./modules/*.ts'),
   moduleRoutes: RouteRecordRaw[] = [];
 
 Object.keys(allModules).forEach(key => {
@@ -10,5 +12,4 @@ Object.keys(allModules).forEach(key => {
 
   moduleRoutes.push(...modList);
 });
-
-export default sortRoutes(moduleRoutes);
+export default concat(sortRoutes(moduleRoutes), whiteRoutes);

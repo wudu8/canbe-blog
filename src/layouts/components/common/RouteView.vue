@@ -1,16 +1,20 @@
 <script lang="ts" setup>
-import { RouterView } from 'vue-router';
+import { computed } from 'vue';
+import { RouterView, useRoute } from 'vue-router';
+import { useClasses } from '@/hooks';
+import { pathEnum } from '@/router';
+
+import Home from '@/views/home/Index.vue';
+
+const currentRouter = useRoute();
+const contentClasses = useClasses('content');
+
+const isHome = computed(() => currentRouter.fullPath === pathEnum.home);
 </script>
 
 <template>
-  <a-breadcrumb :style="{ margin: '16px 0' }">
-    <a-breadcrumb-item>Home</a-breadcrumb-item>
-    <a-breadcrumb-item>List</a-breadcrumb-item>
-    <a-breadcrumb-item>App</a-breadcrumb-item>
-  </a-breadcrumb>
-  <div :style="{ background: '#fff', padding: '24px', minHeight: '380px' }">
-    <router-view />
+  <div :class="contentClasses">
+    <router-view v-if="!isHome" />
+    <Home v-else />
   </div>
 </template>
-
-<style></style>

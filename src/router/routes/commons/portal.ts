@@ -1,9 +1,10 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { PortalLayout } from '@/layouts';
+import { pathEnum } from '@/router/path';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: pathEnum.home,
     name: 'home',
     meta: {
       title: 'home',

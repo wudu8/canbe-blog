@@ -1,4 +1,5 @@
 import { type RouteRecordRaw } from 'vue-router';
+import { pathEnum } from '@/router/path';
 
 const routeName = 'exception',
   routes: Array<RouteRecordRaw> = [
@@ -10,10 +11,10 @@ const routeName = 'exception',
         sort: 10,
         icon: 'exception'
       },
-      redirect: '/exception/404',
+      redirect: pathEnum.notFound,
       children: [
         {
-          path: '404',
+          path: pathEnum.notFound,
           name: `${routeName}-404`,
           meta: {
             title: '404',

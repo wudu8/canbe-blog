@@ -1,3 +1,6 @@
+/**
+ * 判断当前设备类型
+ */
 import { onMounted, onBeforeMount, onBeforeUnmount } from 'vue';
 import { useDebounceFn } from '@vueuse/core';
 import { useAppStore } from '@/store';
@@ -15,7 +18,7 @@ export enum DeviceType {
   desktop = 'desktop'
 }
 
-export default function useResponsive(immediate?: boolean) {
+export function useResponsive(immediate?: boolean) {
   const appStore = useAppStore();
   function resizeHandler() {
     if (!document.hidden) {

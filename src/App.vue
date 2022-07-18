@@ -3,7 +3,7 @@ import { RouterView } from 'vue-router';
 import { computed } from 'vue';
 import enUS from '@arco-design/web-vue/es/locale/lang/en-us';
 import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn';
-import useLocale from '@/hooks/useLocale';
+import { useLocale } from '@/hooks';
 
 const { currentLocale } = useLocale();
 const locale = computed(() => {
@@ -27,5 +27,6 @@ const locale = computed(() => {
 <style lang="less">
 #app {
   height: 100vh;
+  background: @background-base;
 }
 </style>

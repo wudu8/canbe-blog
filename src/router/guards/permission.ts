@@ -1,15 +1,14 @@
 import type { Router } from 'vue-router';
 
-import whiteRouteList from './whiteRoutesList';
+import { whitePath } from './whiteRoutesList';
 import NProgress from 'nprogress'; // progress bar
 
 export default function (router: Router): void {
   router.beforeEach(guard => {
     // white list
-    if (whiteRouteList.includes(guard.path)) {
+    if (whitePath.includes(guard.path)) {
       return;
     }
-    //
     if (!router.hasRoute(guard.name || '')) {
       router.push('/exception/404');
     }

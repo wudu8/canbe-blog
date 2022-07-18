@@ -1,6 +1,26 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useAppStore } from '@/store';
+import { useClasses } from '@/hooks';
+
+interface LogoProps {
+  systemTitle: string;
+}
+const props = withDefaults(defineProps<LogoProps>(), {});
+
+const appStore = useAppStore();
+const footerClasses = useClasses('footer');
+</script>
 <template>
-  <a-layout-footer :style="{ textAlign: 'center' }"> Canbe ©2022 </a-layout-footer>
+  <a-layout-footer :class="footerClasses">
+    {{ props.systemTitle }} ©{{ appStore.year }}
+  </a-layout-footer>
 </template>
 
-<style></style>
+<style lang="less" scoped>
+.@{app-prefix}-footer{
+  height: @protal-footer-height;
+  line-height: @protal-footer-height;
+  text-align: center;
+  background: @protal-footer-background;
+}
+</style>
