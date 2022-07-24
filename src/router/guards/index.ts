@@ -1,24 +1,20 @@
-import { Router } from 'vue-router';
-import whiteRouteList from './whiteRoutesList';
+import type { Router } from 'vue-router';
 
-export const createRouterGuards = (router: Router): void => {
-  router.beforeEach(guard => {
-    // white list
-    if (whiteRouteList.includes(guard.path)) {
-      return;
-    }
-    //
-    if (!router.hasRoute(guard.name || '')) {
-      router.push('/exception/404');
-    }
-  });
+import NProgress from 'nprogress'; // progress bar
+import { setRouteEmitter } from '@/utils/route-listener';
+// import setupUserLoginInfoGuard from './userLoginInfo';
+import setupPermissionGuard from './permission';
 
-  router.afterEach(guard => {
-    document.title = guard?.meta?.title || document.title;
+function setupPageGuard(router: Router) {
+  router.beforeEach(async to => {
+    NProgress.start(); // start progress bar
+    // emit route change
+    setRouteEmitter(to);
   });
+}
 
-  router.onError((error, to, from) => {
-    // eslint-disable-next-line no-console
-    console.error(error, from, to);
-  });
-};
+export default function createRouterGuards(router: Router) {
+  setupPageGuard(router);
+  // setupUserLoginInfoGuard(router);
+  setupPermissionGuard(router);
+}

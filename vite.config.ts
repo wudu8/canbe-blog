@@ -2,12 +2,12 @@ import { defineConfig, loadEnv } from 'vite';
 import * as path from 'path';
 
 import {
-  cssConfig,
+  createViteCss,
   createVitePlugins,
   convertViteEnv,
   createViteServer,
   createViteBuild
-} from './scripts';
+} from './config';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
@@ -16,7 +16,7 @@ export default defineConfig(({ command, mode }) => {
   const envConfig = convertViteEnv(loadEnv(mode, envDir));
   const { VITE_PUBLIC_PATH } = envConfig;
 
-  return {
+  const options = {
     base: VITE_PUBLIC_PATH,
     envDir: envDir,
     resolve: {
@@ -29,12 +29,13 @@ export default defineConfig(({ command, mode }) => {
       __DEV__: !isBuild
     },
     // 样式配置
-    ...cssConfig,
+    ...createViteCss(envConfig, isBuild),
     // 注册vite插件
-    ...createVitePlugins(envConfig),
+    ...createVitePlugins(envConfig, isBuild),
     // 配置server
-    ...createViteServer(envConfig),
+    ...createViteServer(envConfig, isBuild),
     // 打包配置
-    ...createViteBuild(envConfig)
+    ...createViteBuild(envConfig, isBuild)
   };
+  return options;
 });

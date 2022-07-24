@@ -1,20 +1,31 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import { computed } from 'vue';
+import enUS from '@arco-design/web-vue/es/locale/lang/en-us';
+import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn';
+import useLocale from '@/hooks/useLocale';
+
+const { currentLocale } = useLocale();
+const locale = computed(() => {
+  switch (currentLocale.value) {
+    case 'zh-CN':
+      return zhCN;
+    case 'en-US':
+      return enUS;
+    default:
+      return enUS;
+  }
+});
 </script>
 
 <template>
-  <router-view />
+  <a-config-provider :locale="locale">
+    <router-view />
+  </a-config-provider>
 </template>
 
 <style lang="less">
 #app {
-  margin-top: 60px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  color: #2c3e50;
-  text-align: center;
-
-  img {
-    margin: 0 auto;
-  }
+  height: 100vh;
 }
 </style>

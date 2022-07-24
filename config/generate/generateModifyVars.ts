@@ -3,6 +3,6 @@
  */
 export function generateModifyVars(): Record<string, string> {
   return {
-    hack: 'true; @import (reference) "@/theme/variable/antd.less";'
+    hack: 'true; @import (reference) "@/theme/variable/arco.less";'
   };
 }

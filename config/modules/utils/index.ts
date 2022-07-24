@@ -1,5 +1,4 @@
 // 通过 loadEnv 导出的环境变量为 Record<string, string>，这里用于转换成类型更准确的值
-/* global ImportMetaEnv, SafeAny */
 export function convertViteEnv(envRecord: Record<string, string>): ImportMetaEnv {
   const env: SafeAny = {};
 
@@ -13,4 +12,11 @@ export function convertViteEnv(envRecord: Record<string, string>): ImportMetaEnv
     env[key] = value;
   }
   return env;
+}
+
+export function getCommonHtmlEnv(env: ImportMetaEnv, type: string) {
+  return {
+    VITE_APP_TITLE: type === 'front' ? env.VITE_APP_FRONT_TITLE : env.VITE_APP_ADMIN_TITLE,
+    VITE_APP_LOGO: env.VITE_APP_LOGO
+  };
 }

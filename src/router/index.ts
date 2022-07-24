@@ -1,7 +1,12 @@
-import { createRouterGuards } from './guards';
 import type { App } from 'vue';
+
 import { createRouter, createWebHistory } from 'vue-router';
+import createRouterGuards from './guards';
 import routes from './routes';
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css';
+
+NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
 const router = createRouter({
   routes,
@@ -17,7 +22,7 @@ const router = createRouter({
   }
 });
 
-export function setupRouter(app: App<Element>) {
+export function setupRouter(app: App<Element>): void {
   app.use(router);
   createRouterGuards(router);
 }

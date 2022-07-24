@@ -1,4 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router';
+import { PortalLayout } from '@/layouts';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,8 +9,9 @@ const routes: Array<RouteRecordRaw> = [
       title: 'home',
       sort: 1
     },
-    component: () => import('@/views/Home.vue')
-    // children: [],
+    component: PortalLayout,
+    // component: () => import('@/views/Home.vue')
+    children: []
   }
 ];
 

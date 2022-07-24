@@ -3,7 +3,6 @@
     "composite": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "baseUrl": ".",
   },
-  "include": ["mock/**/*.ts", "scripts/**/*.ts", "typings/*.d.ts", "vite.config.ts"]
+  "include": ["mock/**/*.ts", "config/**/*.ts", "typings/*.d.ts", "vite.config.ts"]
 }

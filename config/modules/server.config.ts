@@ -1,8 +1,14 @@
 import type { ServerOptions } from 'vite';
 
-/* global ImportMetaEnv */
-export function createViteServer(env: ImportMetaEnv): { server: ServerOptions } {
+export function createViteServer(
+  env: ImportMetaEnv,
+  isBuild: boolean
+): { server: ServerOptions } | undefined {
   const { VITE_APP_BASE_API, VITE_APP_SERVER_URL } = env;
+
+  if (isBuild) {
+    return undefined;
+  }
 
   return {
     server: {
