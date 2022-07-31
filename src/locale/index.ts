@@ -21,10 +21,6 @@ const i18n = createI18n({
   }
 });
 
-// const { t: $i, rt: $ri, d: $d, n: $n, te: $te, tm: $tm } = useI18n();
-
-// export { $i, $ri, $d, $n, $te, $tm };
-
 export default function setupLocale(app: App): void {
   app.use(i18n);
 }

@@ -24,7 +24,7 @@ const layoutClasses = useClasses('blog-layout');
 
 <style lang="less" scoped>
 .@{app-prefix}-blog-layout{
-  min-height: 100vh;
+  height: 100vh;
   overflow: auto;
 
   .layout-content {

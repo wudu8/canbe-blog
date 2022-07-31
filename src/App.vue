@@ -27,6 +27,7 @@ const locale = computed(() => {
 <style lang="less">
 #app {
   height: 100vh;
+  overflow: hidden;
   background: @background-base;
 }
 </style>

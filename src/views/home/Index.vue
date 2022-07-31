@@ -1,21 +1,27 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useClasses } from '@/hooks';
+
+import SiderBar from './components/SiderBar.vue';
+
+const classes = useClasses('home');
+</script>
 
 <template>
-  <div class="home-wrapper">
-    <div class="entry-list-container"></div>
-    <div class="sidebar"></div>
+  <div :class="classes">
+    <div :class="`${classes}-list-container`"></div>
+    <SiderBar :class="`${classes}-siderbar`" />
   </div>
 </template>
 
 <style lang="less" scoped>
-.home-wrapper {
+.@{app-prefix}-home {
   display: flex;
 
-  .entry-list-container {
+  &-list-container {
     flex: 1;
   }
 
-  .sidebar {
+  &-siderbar {
     width: 300px;
     margin-left: 12px;
   }
