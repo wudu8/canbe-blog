@@ -3,7 +3,6 @@ import type { DeviceType } from '@/hooks';
 
 export interface AppState {
   device: DeviceType;
-  hideMenu: boolean;
   serverMenu: RouteRecordNormalized[];
   logo: string;
   year: string;

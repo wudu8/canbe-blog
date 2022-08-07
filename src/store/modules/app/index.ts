@@ -7,7 +7,6 @@ import { DeviceType } from '@/hooks';
 const useAppStore = defineStore('app', {
   state: (): AppState => ({
     device: DeviceType.desktop,
-    hideMenu: true,
     serverMenu: [],
     theme: 'light',
     logo: import.meta.env.VITE_APP_LOGO,
@@ -22,6 +21,9 @@ const useAppStore = defineStore('app', {
     },
     appDevice(state: AppState) {
       return state.device;
+    },
+    isMobile(state: AppState) {
+      return state.device === DeviceType.mobile;
     },
     appAsyncMenus(state: AppState): RouteRecordNormalized[] {
       return state.serverMenu as unknown as RouteRecordNormalized[];
@@ -44,7 +46,6 @@ const useAppStore = defineStore('app', {
     },
     toggleDevice(device: DeviceType) {
       this.device = device;
-      this.hideMenu = device === DeviceType.mobile;
     }
   }
 });
