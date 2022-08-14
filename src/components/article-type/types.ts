@@ -2,15 +2,15 @@ import type { ExtractInnerPropTypes, ExtractPublicPropTypes } from '@/utils/prop
 
 import { PropType } from 'vue';
 
-export interface siderCardData {
-  id: number | string;
+export interface SiderCardData {
+  id: CKey;
   name: string;
   num: number;
 }
 
 export const siderCardProps = {
   dataSource: {
-    type: Array as PropType<siderCardData[]>,
+    type: Array as PropType<SiderCardData[]>,
     require: true,
     default: () => []
   }

@@ -27,7 +27,7 @@ const dataSource = [
 <template>
   <div :class="classes">
     <a-space direction="vertical" size="medium" fill>
-      <SiderCard :dataSource="dataSource" />
+      <SiderCard :dataSource="dataSource" class="sds" />
       <SiderCard :dataSource="dataSource" />
       <SiderCard :dataSource="dataSource" />
     </a-space>
@@ -35,6 +35,7 @@ const dataSource = [
 </template>
 
 <style lang="less" scoped>
-// .@{app-prefix}-siderbar{
-// }
+.@{app-prefix}-siderbar{
+  flex-shrink: 0;
+}
 </style>

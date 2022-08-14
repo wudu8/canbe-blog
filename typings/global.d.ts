@@ -34,6 +34,9 @@ declare global {
   type Indexable<T = any> = {
     [key: string]: T;
   };
+
+  type CKey = number | string | symbol;
+
   type Lazy<T> = () => Promise<T>;
   type Nullable<T> = T | null;
   type Recordable<T = any> = Record<string, T>;

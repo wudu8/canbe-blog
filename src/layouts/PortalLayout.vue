@@ -25,10 +25,10 @@ const layoutClasses = useClasses('blog-layout');
 <style lang="less" scoped>
 .@{app-prefix}-blog-layout{
   height: 100vh;
-  overflow: auto;
 
   .layout-content {
     margin-top: calc(@protal-header-height + 16px);
+    overflow: auto;
   }
 
   &.mobile {

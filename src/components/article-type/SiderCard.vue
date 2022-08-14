@@ -1,15 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useI18n } from 'vue-i18n';
 import { siderCardProps } from './types';
 
 export default defineComponent({
   name: 'SiderCard',
   props: siderCardProps,
   setup(props) {
-    const { t } = useI18n();
-
-    return { t, data: props.dataSource };
+    return { data: props.dataSource };
   }
 });
 </script>
@@ -18,7 +15,7 @@ export default defineComponent({
   <a-card :bordered="false" size="small" class="article-type-card" title="Small size card">
     <template #title>
       <icon-book />
-      <span class="article-title">{{ t('protal.home.card.title') }}</span>
+      <span class="article-title">{{ $t('protal.home.card.title') }}</span>
     </template>
     <template #extra>
       <slot name="extra"></slot>

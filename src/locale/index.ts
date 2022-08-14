@@ -13,8 +13,9 @@ const i18nMessage = getI18nMessage();
 
 const i18n = createI18n({
   locale: defaultLocale,
-  fallbackLocale: 'en-US',
+  fallbackLocale: 'zh-CN',
   allowComposition: true,
+  globalInjection: true,
   messages: {
     'en-US': i18nMessage.enMessages,
     'zh-CN': i18nMessage.zhMessages

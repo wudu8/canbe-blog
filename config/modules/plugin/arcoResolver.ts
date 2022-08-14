@@ -20,7 +20,8 @@ export default function configArcoResolverPlugin(): Plugin[] {
       deep: false,
       resolvers: [
         ArcoResolver({
-          sideEffect: true
+          sideEffect: true,
+          importStyle: 'less'
         })
       ]
     })

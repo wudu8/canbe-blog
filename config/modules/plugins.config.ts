@@ -8,6 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import eslintPlugin from 'vite-plugin-eslint';
 import stylelintPlugin from 'vite-plugin-stylelint';
 import windiCSS from 'vite-plugin-windicss';
+import vueI18n from '@intlify/vite-plugin-vue-i18n';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 import configArcoResolverPlugin from './plugin/arcoResolver';
@@ -23,6 +24,13 @@ export function createVitePlugins(
   const definePlugins = {
     plugins: [
       vue(),
+      vueI18n({
+        // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
+        // compositionOnly: false,
+
+        // you need to set i18n resource including paths !
+        include: path.resolve(__dirname, './src/locales/**')
+      }),
       // vue jsx语法支持
       vueJsx(),
       // windicss

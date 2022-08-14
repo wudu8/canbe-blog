@@ -2,13 +2,16 @@
 import { useClasses } from '@/hooks';
 
 import SiderBar from './components/SiderBar.vue';
+import ArticleList from './components/ArticleList.vue';
 
 const classes = useClasses('home');
 </script>
 
 <template>
   <div :class="classes">
-    <div :class="`${classes}-list-container`"></div>
+    <div :class="`${classes}-list-container`">
+      <ArticleList />
+    </div>
     <SiderBar :class="`${classes}-siderbar`" />
   </div>
 </template>
@@ -19,6 +22,7 @@ const classes = useClasses('home');
 
   &-list-container {
     flex: 1;
+    overflow: hidden;
   }
 
   &-siderbar {
