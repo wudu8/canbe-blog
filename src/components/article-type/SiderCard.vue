@@ -1,13 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { siderCardProps } from './types';
+import Spin from '../box-spin/Spin.vue';
 
 export default defineComponent({
   name: 'SiderCard',
   props: siderCardProps,
-  setup(props) {
-    return { data: props.dataSource };
-  }
+  components: { Spin }
 });
 </script>
 
@@ -20,13 +19,15 @@ export default defineComponent({
     <template #extra>
       <slot name="extra"></slot>
     </template>
-    <div class="article-type-list">
-      <div v-for="item in data" :key="item.id" class="article-type-item">
-        <div class="article-type-name">{{ item.name }}</div>
-        <div class="article-type-num">{{ item.num }}</div>
-        <icon-right />
+    <Spin :loading="loading">
+      <div class="article-type-list">
+        <div v-for="item in dataSource" :key="item.id" class="article-type-item">
+          <div class="article-type-name">{{ item.name }}</div>
+          <div class="article-type-num">{{ item.num }}</div>
+          <icon-right />
+        </div>
       </div>
-    </div>
+    </Spin>
   </a-card>
 </template>
 

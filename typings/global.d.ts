@@ -43,4 +43,11 @@ declare global {
   type Writable<T> = {
     -readonly [P in keyof T]: T[P];
   };
+
+  type ResponseData<T = SafeAny> = {
+    code: number;
+    data: T;
+    message: string;
+    isSuccess: boolean;
+  };
 }

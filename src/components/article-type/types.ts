@@ -9,6 +9,10 @@ export interface SiderCardData {
 }
 
 export const siderCardProps = {
+  loading: {
+    type: Boolean,
+    default: false
+  },
   dataSource: {
     type: Array as PropType<SiderCardData[]>,
     require: true,

@@ -1,35 +1,34 @@
 <script setup lang="ts">
-import { useClasses } from '@/hooks';
+import type { SiderCardData } from '@/components/article-type';
 
-import SiderCard from '@/components/article-type/SiderCard.vue';
+import { ref, onMounted } from 'vue';
+import { useClasses } from '@/hooks';
+import { getArticleType } from '@/apis/article';
+
+import SiderCard from '@/components/article-type';
 
 const classes = useClasses('siderbar');
 
-const dataSource = [
-  {
-    id: 1,
-    name: '前端',
-    num: 503
-  },
-  {
-    id: 2,
-    name: '后端',
-    num: 3564
-  },
-  {
-    id: 3,
-    name: 'Java',
-    num: 14
-  }
-];
+const dataSource = ref<SiderCardData[]>();
+const loading = ref(false);
+
+onMounted(() => {
+  loading.value = true;
+  getArticleType().then(res => {
+    if (res.isSuccess) {
+      dataSource.value = res.data;
+    }
+    loading.value = false;
+  });
+});
 </script>
 
 <template>
   <div :class="classes">
     <a-space direction="vertical" size="medium" fill>
-      <SiderCard :dataSource="dataSource" class="sds" />
-      <SiderCard :dataSource="dataSource" />
-      <SiderCard :dataSource="dataSource" />
+      <SiderCard :dataSource="dataSource" :loading="loading" class="sds" />
+      <SiderCard :dataSource="dataSource" :loading="loading" />
+      <SiderCard :dataSource="dataSource" :loading="loading" />
     </a-space>
   </div>
 </template>
