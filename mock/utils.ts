@@ -5,12 +5,12 @@ export enum ResultEnum {
   TYPE = 'success'
 }
 
-export function resultSuccess<T = Recordable>(data: T, { message = 'ok' } = {}) {
+export function resultSuccess<T = Recordable>(result: T, { message = 'ok' } = {}) {
   return {
     code: ResultEnum.SUCCESS,
-    data,
+    result,
     message,
-    isSuccess: true
+    success: true
   };
 }
 
@@ -39,7 +39,7 @@ export function resultError(
     code,
     result,
     message,
-    type: 'error'
+    success: false
   };
 }
 

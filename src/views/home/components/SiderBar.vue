@@ -15,8 +15,8 @@ const loading = ref(false);
 onMounted(() => {
   loading.value = true;
   getArticleType().then(res => {
-    if (res.isSuccess) {
-      dataSource.value = res.data;
+    if (res.success) {
+      dataSource.value = res.result;
     }
     loading.value = false;
   });

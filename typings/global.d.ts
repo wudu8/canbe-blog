@@ -46,8 +46,8 @@ declare global {
 
   type ResponseData<T = SafeAny> = {
     code: number;
-    data: T;
+    result: T;
     message: string;
-    isSuccess: boolean;
+    success: boolean;
   };
 }

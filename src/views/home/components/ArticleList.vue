@@ -18,8 +18,8 @@ const dataSource = ref<ArticleListData[]>([]);
 onMounted(() => {
   initLoading.value = true;
   getArticleList().then(res => {
-    if (res.isSuccess) {
-      dataSource.value = res.data;
+    if (res.success) {
+      dataSource.value = res.result;
     }
     initLoading.value = false;
   });
