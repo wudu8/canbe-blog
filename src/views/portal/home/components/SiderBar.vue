@@ -26,9 +26,22 @@ onMounted(() => {
 <template>
   <div :class="classes">
     <a-space direction="vertical" size="medium" fill>
-      <SiderCard :dataSource="dataSource" :loading="loading" class="sds" />
-      <SiderCard :dataSource="dataSource" :loading="loading" />
-      <SiderCard :dataSource="dataSource" :loading="loading" />
+      <SiderCard
+        :dataSource="dataSource"
+        :loading="loading"
+        :title="$t('protal.home.card.title')"
+        class="sds"
+      />
+      <SiderCard
+        :dataSource="dataSource"
+        :loading="loading"
+        :title="$t('protal.home.card.title')"
+      />
+      <SiderCard
+        :dataSource="dataSource"
+        :loading="loading"
+        :title="$t('protal.home.card.title')"
+      />
     </a-space>
   </div>
 </template>

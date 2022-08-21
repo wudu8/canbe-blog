@@ -2,9 +2,7 @@
 import { defineConfig } from 'vite-plugin-windicss';
 
 export default defineConfig({
-  attributify: {
-    prefix: 'w:'
-  },
+  prefix: 'windi-',
   alias: {
     hstack: 'flex items-center',
     vstack: 'flex flex-col',

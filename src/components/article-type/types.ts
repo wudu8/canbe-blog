@@ -9,6 +9,10 @@ export interface SiderCardData {
 }
 
 export const siderCardProps = {
+  title: {
+    type: String,
+    default: ''
+  },
   loading: {
     type: Boolean,
     default: false

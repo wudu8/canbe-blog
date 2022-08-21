@@ -2,6 +2,7 @@ import axios from 'axios';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { ResultEnum } from './httpEnum';
 import { Notification } from '@arco-design/web-vue';
+import { getToken } from '@/utils/auth';
 
 //自定义拦截器类型
 interface customInterceptorType {
@@ -48,7 +49,7 @@ class HttpService {
     this.instance.interceptors.request.use(
       config => {
         //token拦截
-        const token = localStorage.getItem('token');
+        const token = getToken();
         if (token) {
           if (!config.headers) {
             config.headers = {};

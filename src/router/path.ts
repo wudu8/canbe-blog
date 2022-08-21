@@ -3,7 +3,8 @@
  */
 
 const protalPathEnum = {
-  home: '/'
+  home: '/',
+  md: '/md'
 };
 
 const adminPathEnum = {};

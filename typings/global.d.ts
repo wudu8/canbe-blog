@@ -10,7 +10,7 @@ declare global {
 
   type SafeAny = any;
 
-  type Fn = () => void;
+  type Fn<T = SafeAny> = (...arg: T[]) => void;
 
   interface ImportMetaEnv {
     readonly VITE_APP_TITLE: string;

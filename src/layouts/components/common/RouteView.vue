@@ -4,7 +4,7 @@ import { RouterView, useRoute } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { pathEnum } from '@/router';
 
-import Home from '@/views/home/Index.vue';
+import Home from '@/views/portal/home/Index.vue';
 
 const currentRouter = useRoute();
 const contentClasses = useClasses('content');
