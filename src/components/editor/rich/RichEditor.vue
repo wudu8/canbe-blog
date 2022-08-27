@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import type { InnerImageElement } from './types';
+import type { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor';
 
 import '@wangeditor/editor/dist/css/style.css'; // 引入 css
-import { onBeforeUnmount, computed, shallowRef } from 'vue';
-import { merge, isEmpty } from 'lodash-es';
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
-import { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor';
+import { onBeforeUnmount, computed, shallowRef, watch } from 'vue';
+import { merge } from 'lodash-es';
+import { i18nChangeLanguage } from '@wangeditor/editor';
 import { useControlledPropByEmit } from '@/hooks/props/useControlledProp';
-import { t } from '@/locale';
+import { useLocale } from '@/hooks/design/useLocale';
+import { t, LocaleEnum } from '@/locale';
 import { ModeType, ModeEnum } from './types';
-import { getEditorConfig } from './config';
+import { getEditorConfig, geToolbarConfig } from './config';
+
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
 
 interface Props {
   placeholder?: string;
@@ -19,18 +21,27 @@ interface Props {
   mode?: ModeType;
 }
 const props = withDefaults(defineProps<Props>(), {
-  mode: ModeEnum.default
+  mode: ModeEnum.simple
 });
 
 // 编辑器实例，必须用 shallowRef
 const editorRef = shallowRef<IDomEditor>();
-let initImages: SafeAny[] = [];
+
+// 切换语言 - 'en' 或者 'zh-CN'
+const wangeditorLocale = {
+  [LocaleEnum.enUS]: 'en',
+  [LocaleEnum.zhCN]: 'zh-CN'
+};
 
 // 内容 HTML
 const [content, setContent] = useControlledPropByEmit(props, 'modelValue', '');
+const { currentLocale } = useLocale();
+
+// 切换语言 - 'en' 或者 'zh-CN'
+watch(currentLocale, lang => i18nChangeLanguage(wangeditorLocale[lang]), { immediate: true });
 
 const toolbarConfig = computed(() => {
-  return merge({}, props.toolbarConfig);
+  return merge(geToolbarConfig(), props.toolbarConfig);
 });
 
 const editorConfig = computed(() => {
@@ -48,31 +59,10 @@ onBeforeUnmount(() => {
 
 const handleCreated = (editor: IDomEditor) => {
   editorRef.value = editor; // 记录 editor 实例
-  initImages = editorRef.value?.getElemsByType('image');
 };
 const handleChange = (editor: IDomEditor) => {
   setContent(editor.getHtml());
 };
-
-const getDeletedImage = () => {
-  const newImages = editorRef.value?.getElemsByType('image');
-  const deletedImages: InnerImageElement[] = [];
-  if (isEmpty(initImages) && newImages) {
-    initImages.forEach(item => {
-      const matched = newImages.find(newItem => newItem.id === item.id) as
-        | InnerImageElement
-        | undefined;
-      if (matched) {
-        deletedImages.push(matched);
-      }
-    });
-  }
-  return deletedImages;
-};
-
-defineExpose({
-  getDeletedImage
-});
 </script>
 
 <template>

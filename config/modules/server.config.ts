@@ -14,6 +14,7 @@ export function createViteServer(
     server: {
       hmr: true,
       open: true,
+      host: '0.0.0.0',
       proxy: {
         [VITE_APP_BASE_API]: {
           target: VITE_APP_SERVER_URL,

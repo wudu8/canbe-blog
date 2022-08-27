@@ -19,6 +19,7 @@ declare global {
     readonly VITE_MOCK_ENABLED: boolean;
     readonly VITE_APP_BASE_API: string;
     readonly VITE_APP_SERVER_URL: string;
+    readonly __DEV__: boolean;
 
     readonly VITE_APP_FRONT_TITLE: string;
     readonly VITE_APP_ADMIN_TITLE: string;

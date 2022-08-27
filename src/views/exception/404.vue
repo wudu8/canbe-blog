@@ -9,9 +9,45 @@ function goHome() {
 </script>
 
 <template>
-  <IxResult title="404 Not Found">
-    <template #extra>
-      <IxButton mode="primary" @click="goHome">Go Back</IxButton>
-    </template>
-  </IxResult>
+  <div class="wrapper-box">
+    <img src="@images/exception/404_bg.png" />
+    <div class="error-box">
+      <div class="error-text">{{ $t('protal.exception.404.title') }}</div>
+      <a-button type="primary" size="large" class="back-btn" @click="goHome">{{
+        $t('protal.exception.go_back.btn')
+      }}</a-button>
+    </div>
+  </div>
 </template>
+<style lang="less" scoped>
+.wrapper-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  .error-text {
+    margin-bottom: 48px;
+    font-size: 22px;
+    color: #6f6f6f;
+  }
+
+  .back-btn {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .wrapper-box {
+    .error-box {
+      width: 100%;
+      text-align: center;
+
+      .back-btn {
+        width: 200px;
+      }
+    }
+  }
+}
+</style>

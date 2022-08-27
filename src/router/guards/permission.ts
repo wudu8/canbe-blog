@@ -1,15 +1,16 @@
 import type { Router } from 'vue-router';
 
-import { whitePath } from './whiteRoutesList';
+import { whiteName } from './whiteRoutesList';
 
 export default function (router: Router): void {
-  router.beforeEach(guard => {
+  router.beforeEach((to, _, next) => {
     // white list
-    if (whitePath.includes(guard.path)) {
+    if (to.name && whiteName.includes(to.name)) {
+      next();
       return;
     }
-    if (!router.hasRoute(guard.name || '')) {
-      router.push('/exception/404');
+    if (!router.hasRoute(to.name || '')) {
+      router.push('/exception/not_found');
     }
   });
 }

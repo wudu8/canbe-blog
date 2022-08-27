@@ -13,4 +13,4 @@ Object.keys(allModules).forEach(key => {
 });
 
 export const whiteRoutes = sortRoutes(moduleRoutes);
-export const whitePath = flattenTree(whiteRoutes, item => item.path);
+export const whiteName = flattenTree(whiteRoutes, item => item.name);

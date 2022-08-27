@@ -4,13 +4,13 @@
 
 const protalPathEnum = {
   home: '/',
-  md: '/md'
+  edit_article: '/edit_article'
 };
 
 const adminPathEnum = {};
 
 const exceptionPathEnum = {
-  notFound: '/exception/404'
+  notFound: '/exception/not_found'
 };
 export const pathEnum = {
   ...protalPathEnum,

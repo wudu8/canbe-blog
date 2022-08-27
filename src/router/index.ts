@@ -1,6 +1,6 @@
 import type { App } from 'vue';
 
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import createRouterGuards from './guards';
 import routes from './routes';
 import NProgress from 'nprogress'; // progress bar
@@ -10,7 +10,7 @@ NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
 const router = createRouter({
   routes,
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   scrollBehavior: (to, _, savedPosition) => {
     if (savedPosition) {
       // 后退才有savedPosition

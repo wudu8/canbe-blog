@@ -16,10 +16,10 @@ const routes: Array<RouteRecordRaw> = [
     children: []
   },
   {
-    path: pathEnum.md,
-    name: 'edit_md',
+    path: pathEnum.edit_article,
+    name: 'edit_article',
     meta: {
-      title: t('protal.edit_md.title'),
+      title: t('protal.edit_article.title'),
       sort: 1
     },
     component: () => import('@/views/portal/editor/Index.vue')

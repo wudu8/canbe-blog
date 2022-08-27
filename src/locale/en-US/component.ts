@@ -10,6 +10,7 @@ export default {
   'protal.editor.header.auto_saved': '保存成功',
   'protal.editor.header.switch.rich': '切换为富文本编辑器模式',
   'protal.editor.header.switch.md': '切换为 Markdown 编辑器模式',
-  'protal.editor.header.switch.warning': '切换写作模式后，当前内容不会迁移，但会自动保存为草稿。',
+  'protal.editor.header.switch.warning':
+    '切换写作模式后，当前内容不会迁移，切换后修改内容后草稿也将被覆盖。',
   'protal.editor.content.placeholder': '输入内容...'
 };

@@ -63,7 +63,7 @@ export default [
     response: resultSuccess([
       {
         id: 1,
-        name: '前端',
+        name: '@ctitle(10)',
         num: 503
       },
       {
@@ -79,20 +79,14 @@ export default [
     ])
   },
   {
-    url: '/api/text',
-    method: 'post',
-    rawResponse: async (req, res) => {
-      let reqbody = '';
-
-      await new Promise(resolve => {
-        req.on('data', chunk => {
-          reqbody += chunk;
-        });
-        req.on('end', () => resolve(undefined));
-      });
-      res.setHeader('Content-Type', 'text/plain');
-      res.statusCode = 200;
-      res.end(`hello, ${reqbody}`);
-    }
+    url: '/api/article/get_article',
+    method: 'get',
+    response: resultSuccess({
+      id: '@ctitle(10)',
+      title: '@ctitle(10)',
+      content:
+        '<p><img src="https://picsum.photos/302" alt="图片" data-href="https://picsum.photos/300/2" style=""/><img src="https://picsum.photos/303" alt="图片" data-href="https://picsum.photos/300/2" style=""/></p>',
+      mode: 'rich'
+    })
   }
 ] as MockMethod[];

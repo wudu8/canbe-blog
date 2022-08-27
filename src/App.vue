@@ -3,10 +3,13 @@ import { RouterView } from 'vue-router';
 import { computed } from 'vue';
 import enUS from '@arco-design/web-vue/es/locale/lang/en-us';
 import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn';
-import { useLocale } from '@/hooks';
+import { useLocale, changeLocaleByUrl } from '@/hooks';
 import { LocaleEnum } from '@/locale';
 
+changeLocaleByUrl();
+
 const { currentLocale } = useLocale();
+
 const locale = computed(() => {
   switch (currentLocale.value) {
     case LocaleEnum.zhCN:

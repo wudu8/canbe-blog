@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue';
 import { useControlledPropByEmit } from '@/hooks/props/useControlledProp';
+import { useLocale } from '@/hooks/design/useLocale';
 import getLocales from './lang';
 
 import { Editor } from '@bytemd/vue-next';
@@ -25,7 +26,10 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {});
 
-const locales = getLocales();
+const locales = computed(() => {
+  const { currentLocale } = useLocale();
+  return getLocales(currentLocale.value);
+});
 
 const [content, setContent] = useControlledPropByEmit(props, 'modelValue', '');
 
@@ -47,18 +51,18 @@ const plugins = computed(() => {
     enabled.gemoji && gemoji(),
     enabled.gfm &&
       gfm({
-        locale: locales.gfm
+        locale: locales.value.gfm
       }),
     enabled.highlight && highlight(),
     enabled.math &&
       math({
-        locale: locales.math,
+        locale: locales.value.math,
         katexOptions: { output: 'html' }
       }),
     enabled['medium-zoom'] && mediumZoom(),
     enabled.mermaid &&
       mermaid({
-        locale: locales.mermaid
+        locale: locales.value.mermaid
       })
   ].filter(x => x);
 });
