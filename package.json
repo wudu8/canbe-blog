@@ -73,7 +73,6 @@
     "stylelint": "^14.9.1",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-recess-order": "^3.0.0",
     "stylelint-config-standard": "^26.0.0",
     "typescript": "^4.7.4",
     "unplugin-auto-import": "^0.10.0",
@@ -83,8 +82,6 @@
     "vite-plugin-eslint": "^1.6.1",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-mock": "^2.9.6",
-    "vite-plugin-optimize-persist": "^0.1.2",
-    "vite-plugin-package-config": "^0.1.1",
     "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-stylelint": "^3.0.2",
     "vite-plugin-svg-icons": "^2.0.1",
@@ -125,7 +122,6 @@
     ]
   },
   "changelog": {
-    "bugsUrl": "https://github.com/huoyou/vue_cli3/issues/",
     "emojis": true,
     "authorName": true,
     "authorEmail": true

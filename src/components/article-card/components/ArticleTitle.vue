@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useClasses } from '@/hooks';
+import { useAppStore } from '@/store';
 import { ArticleListData } from '../types';
 
 interface Props {
@@ -12,6 +13,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 const itemPushRef = ref<HTMLElement>();
 const classes = useClasses('item-title');
+const appStore = useAppStore();
+
 const title = computed(() => props.item.title);
 const articlePath = computed(() => props.item.articlePath);
 const beforeTag = computed(() => props.item.beforeTag);
@@ -27,7 +30,7 @@ defineExpose({
 </script>
 
 <template>
-  <div :class="classes">
+  <div :class="{ [classes]: true, 'mobile-title': appStore.isMobile }">
     <a ref="itemPushRef" :href="`/${articlePath}`" target="_blank" :class="`${classes}-href`">
       <a-tag v-if="beforeTag && showTag" :color="beforeTag.color" size="small" class="before-tag">
         {{ beforeTag.label }} </a-tag
@@ -44,6 +47,10 @@ defineExpose({
 
 <style lang="less" scope>
 .@{app-prefix}-item-title {
+  &.mobile-title .canbe-item-title-href {
+    font-size: 14px;
+  }
+
   &-href {
     display: flex;
     align-items: center;

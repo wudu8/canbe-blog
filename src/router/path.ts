@@ -4,10 +4,15 @@
 
 const protalPathEnum = {
   home: '/',
-  edit_article: '/edit_article'
+  editArticle: '/article/edit_article'
 };
 
 const adminPathEnum = {};
+
+const commonPathEnum = {
+  common: '/common',
+  login: '/login'
+};
 
 const exceptionPathEnum = {
   notFound: '/exception/not_found'
@@ -15,7 +20,8 @@ const exceptionPathEnum = {
 export const pathEnum = {
   ...protalPathEnum,
   ...adminPathEnum,
-  ...exceptionPathEnum
+  ...exceptionPathEnum,
+  ...commonPathEnum
 };
 
 export type PathEnum = typeof pathEnum;

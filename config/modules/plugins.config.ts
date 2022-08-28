@@ -9,8 +9,6 @@ import eslintPlugin from 'vite-plugin-eslint';
 import stylelintPlugin from 'vite-plugin-stylelint';
 import windiCSS from 'vite-plugin-windicss';
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
-import OptimizationPersist from 'vite-plugin-optimize-persist';
-import PkgConfig from 'vite-plugin-package-config';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 
 import configArcoResolverPlugin from './plugin/arcoResolver';
@@ -35,10 +33,6 @@ export function createVitePlugins(
       }),
       // vue jsx语法支持
       vueJsx(),
-      // 解决加载缓慢自动填充package.json
-      PkgConfig(),
-      // 动态分析依赖优化
-      OptimizationPersist(),
       // windicss
       windiCSS(),
       // 按需引入组件库样式

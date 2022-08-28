@@ -10,3 +10,9 @@ export interface ArticleData {
   content: string;
   mode: ArticleMode;
 }
+
+/** 删除文章被删除的图片列表 */
+export interface DeleteArticleImages {
+  id: string;
+  imgs: string[];
+}

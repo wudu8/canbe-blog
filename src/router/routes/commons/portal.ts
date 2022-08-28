@@ -14,15 +14,6 @@ const routes: Array<RouteRecordRaw> = [
     },
     component: PortalLayout,
     children: []
-  },
-  {
-    path: pathEnum.edit_article,
-    name: 'edit_article',
-    meta: {
-      title: t('protal.edit_article.title'),
-      sort: 1
-    },
-    component: () => import('@/views/portal/editor/Index.vue')
   }
 ];
 

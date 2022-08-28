@@ -82,7 +82,7 @@ export default [
     url: '/api/article/get_article',
     method: 'get',
     response: resultSuccess({
-      id: '@ctitle(10)',
+      id: '@character(10)',
       title: '@ctitle(10)',
       content:
         '<p><img src="https://picsum.photos/302" alt="图片" data-href="https://picsum.photos/300/2" style=""/><img src="https://picsum.photos/303" alt="图片" data-href="https://picsum.photos/300/2" style=""/></p>',

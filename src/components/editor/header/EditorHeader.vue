@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue';
 import { t } from '@/locale';
 import { useControlledPropByEmit } from '@/hooks/props/useControlledProp';
+import { useAppStore } from '@/store';
 
 interface Props {
   placeholder?: string;
@@ -19,6 +20,7 @@ const emits = defineEmits<{
 
 const modalVisible = ref(false);
 const [titleValue, setTitle] = useControlledPropByEmit(props, 'title', '');
+const appStore = useAppStore();
 
 const switchTip = computed(() =>
   props.isMd ? t('protal.editor.header.switch.rich') : t('protal.editor.header.switch.md')
@@ -49,7 +51,7 @@ const comfirmSwitch = () => {
 </script>
 
 <template>
-  <div class="editor-header">
+  <div :class="{ 'mobile-editor-header': appStore.isMobile }" class="editor-header">
     <a-input
       :model-value="titleValue"
       :placeholder="props.placeholder"
@@ -57,7 +59,7 @@ const comfirmSwitch = () => {
       @update:model-value="handleChange"
     />
     <div class="right-suffix">
-      <div v-if="props.tip" class="tip-text">{{ props.tip }}</div>
+      <div v-if="props.tip && !appStore.isMobile" class="tip-text">{{ props.tip }}</div>
       <a-button type="outline" class="windi-ml-2 windi-mr-2" @click="handleDrafts">{{
         $t('protal.editor.header.drafts')
       }}</a-button>
@@ -80,13 +82,24 @@ const comfirmSwitch = () => {
 </template>
 
 <style lang="less" scope>
+@actions-wrapper-height: 32px;
+@title-input-height: 64px;
+
 .editor-header {
   display: flex;
-  height: 64px;
+  height: @title-input-height;
   padding: 0 12px;
   background-color: #fff;
 
+  &.mobile-editor-header {
+    flex-direction: column;
+    height: calc(@title-input-height + @actions-wrapper-height + 8px);
+    padding: 0;
+    padding-bottom: 8px;
+  }
+
   .editor-title-input {
+    height: @title-input-height;
     background-color: #fff;
 
     &.arco-input-focus {

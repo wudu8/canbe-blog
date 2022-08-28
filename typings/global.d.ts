@@ -12,6 +12,12 @@ declare global {
 
   type Fn<T = SafeAny> = (...arg: T[]) => void;
 
+  interface Window {
+    systemOptions: {
+      title: string;
+    };
+  }
+
   interface ImportMetaEnv {
     readonly VITE_APP_TITLE: string;
     readonly VITE_BASE_URL: string;

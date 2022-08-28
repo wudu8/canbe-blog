@@ -1,7 +1,10 @@
 import type { RouteComponent, RouteRecordRaw } from 'vue-router';
 declare module 'vue-router' {
   export interface RouteMeta {
-    title: string;
+    title?: string;
+
+    // 强制显示自定义页面title
+    customTitle?: string;
 
     icon?: string;
 

@@ -8,9 +8,14 @@ export default function (router: Router): void {
     if (to.name && whiteName.includes(to.name)) {
       next();
       return;
-    }
-    if (!router.hasRoute(to.name || '')) {
-      router.push('/exception/not_found');
+    } else {
+      if (!router.hasRoute(to.name || '')) {
+        router.push('/exception/not_found');
+        return;
+      }
+      // 权限控制
+      next();
+      return;
     }
   });
 }

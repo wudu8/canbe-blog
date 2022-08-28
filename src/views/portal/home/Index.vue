@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { useClasses } from '@/hooks';
+import { useAppStore } from '@/store';
 
 import SiderBar from './components/SiderBar.vue';
 import ArticleList from './components/ArticleList.vue';
 
 const classes = useClasses('home');
+const appStore = useAppStore();
 </script>
 
 <template>
@@ -12,7 +14,7 @@ const classes = useClasses('home');
     <div :class="`${classes}-list-container`">
       <ArticleList />
     </div>
-    <SiderBar :class="`${classes}-siderbar`" />
+    <SiderBar v-if="!appStore.isMobile" :class="`${classes}-siderbar`" />
   </div>
 </template>
 

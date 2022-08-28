@@ -28,7 +28,7 @@ export function useResponsive(immediate?: boolean) {
   }
   const debounceFn = useDebounceFn(resizeHandler, 100);
   onMounted(() => {
-    if (immediate) debounceFn();
+    if (immediate) resizeHandler();
   });
   onBeforeMount(() => {
     addEventListen(window, 'resize', debounceFn);

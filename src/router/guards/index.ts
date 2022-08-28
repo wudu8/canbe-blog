@@ -12,8 +12,10 @@ function setupPageGuard(router: Router) {
     setRouteEmitter(to);
   });
   router.afterEach(guard => {
-    document.title = guard?.meta?.title
-      ? `${document.title} - ${guard.meta.title}`
+    document.title = guard?.meta?.customTitle
+      ? guard.meta.customTitle
+      : guard?.meta?.title && window?.systemOptions?.title
+      ? `${window.systemOptions.title} - ${guard.meta.title}`
       : document.title;
   });
 }

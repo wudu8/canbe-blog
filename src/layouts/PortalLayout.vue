@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useResponsive, useClasses } from '@/hooks';
+import { useResponsive, useClasses, useLocale } from '@/hooks';
 import { useAppStore } from '@/store';
 
 import RouteView from './components/common/RouteView.vue';
@@ -8,10 +8,14 @@ import PortalHeader from './components/protal/PortalHeader.vue';
 
 useResponsive(true);
 const appStore = useAppStore();
+const { currentLocale } = useLocale();
 const layoutClasses = useClasses('blog-layout');
 </script>
 <template>
-  <a-layout theme="light" :class="{ [appStore.device]: true, [layoutClasses]: true }">
+  <a-layout
+    theme="light"
+    :class="{ [appStore.device]: true, [layoutClasses]: true, [currentLocale]: true }"
+  >
     <PortalHeader />
     <a-layout class="layout-content">
       <a-layout-content class="content-wrapper">

@@ -25,7 +25,6 @@ const titleClasses = useClasses('title');
   display: flex;
   gap: 8px;
   align-items: center;
-  height: 100%;
 
   .@{app-prefix}-logo {
     width: auto;

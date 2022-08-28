@@ -22,8 +22,8 @@ const i18n = createI18n({
   fallbackLocale: LocaleEnum.zhCN,
   globalInjection: true,
   messages: {
-    [LocaleEnum.zhCN]: i18nMessage.enMessages,
-    [LocaleEnum.enUS]: i18nMessage.zhMessages
+    [LocaleEnum.zhCN]: i18nMessage.zhMessages,
+    [LocaleEnum.enUS]: i18nMessage.enMessages
   }
 });
 

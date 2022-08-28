@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useClasses } from '@/hooks';
+import { useAppStore } from '@/store';
 import { ArticleListData } from '../types';
 
 import ViewAction from './ViewAction.vue';
@@ -13,6 +14,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {});
 
 const ArticleTitleRef = ref<InstanceType<typeof ArticleTitle>>();
+const appStore = useAppStore();
 
 const handleClick = () => {
   ArticleTitleRef.value?.click();
@@ -24,8 +26,10 @@ const classes = useClasses('article-list-item');
   <a-list-item :class="classes" @click="handleClick">
     <a-list-item-meta>
       <template #title>
-        <ArticleInfo :item="props.item" />
-        <ArticleTitle ref="" :item="props.item" />
+        <div :class="{ [`${classes}-title`]: true, reverse: appStore.isMobile }">
+          <ArticleInfo :item="props.item" />
+          <ArticleTitle ref="" :item="props.item" />
+        </div>
       </template>
       <template #description>
         <div :class="`${classes}-description`">{{ props.item.description }}</div>
@@ -81,6 +85,15 @@ const classes = useClasses('article-list-item');
   &-description {
     margin-bottom: 10px;
     color: @weak-text-color;
+  }
+
+  &-title {
+    display: flex;
+    flex-direction: column;
+
+    &.reverse {
+      flex-direction: column-reverse;
+    }
   }
 }
 </style>
