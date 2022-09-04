@@ -16,5 +16,6 @@ export default {
   'login.banner.subSlogan2':
     'Internationalization, routing configuration, state management everything',
   'login.banner.slogan3': 'Access visualization enhancement tool AUX',
-  'login.banner.subSlogan3': 'Realize flexible block development'
+  'login.banner.subSlogan3': 'Realize flexible block development',
+  'login.user_menu.go_login': 'login'
 };

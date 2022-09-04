@@ -15,5 +15,6 @@ export default {
   'login.banner.slogan2': '内置了常见问题的解决方案',
   'login.banner.subSlogan2': '技术知识、生活常识、常用小工具应有尽有',
   'login.banner.slogan3': '接入强大的编辑器',
-  'login.banner.subSlogan3': '实现灵活的文章书写'
+  'login.banner.subSlogan3': '实现灵活的文章书写',
+  'login.user_menu.go_login': '登录'
 };

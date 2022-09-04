@@ -4,8 +4,11 @@ import { useClasses } from '@/hooks';
 
 interface LogoProps {
   systemTitle: string;
+  showTitle: boolean;
 }
-const props = withDefaults(defineProps<LogoProps>(), {});
+const props = withDefaults(defineProps<LogoProps>(), {
+  showTitle: true
+});
 
 const appStore = useAppStore();
 const logoClasses = useClasses('logo');
@@ -14,7 +17,7 @@ const titleClasses = useClasses('title');
 <template>
   <div class="logo-wrapper">
     <img :src="appStore.logo" alt="logo" :class="logoClasses" />
-    <span :class="titleClasses">
+    <span v-if="showTitle" :class="titleClasses">
       {{ props.systemTitle }}
     </span>
   </div>

@@ -4,7 +4,8 @@
 
 const protalPathEnum = {
   home: '/',
-  editArticle: '/article/edit_article'
+  editArticle: '/article/edit_article',
+  drafts: '/article/drafts'
 };
 
 const adminPathEnum = {};

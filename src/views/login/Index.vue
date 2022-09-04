@@ -56,6 +56,10 @@ const classes = useClasses('login-container');
       width: 100%;
       z-index: 1;
       margin-top: 84px;
+
+      .login-form-wrapper {
+        width: 280px;
+      }
     }
 
     .footer {

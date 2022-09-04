@@ -56,8 +56,7 @@ defineExpose({
     align-items: center;
     margin: 10px 0;
     font-size: 16px;
-    font-weight: bold;
-    color: @base-text-color;
+    color: @title-text-color;
 
     &:visited {
       color: @visited-text-color;

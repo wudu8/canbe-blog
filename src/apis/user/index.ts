@@ -2,10 +2,10 @@ import type { RouteRecordNormalized } from 'vue-router';
 import type { LoginData, LoginRes } from './types';
 
 import service from '@/utils/service';
-import { UserState } from '@/store/modules/user/types';
+import { LoginState } from '@/store/modules/user/types';
 
 export function login(data: LoginData) {
-  return service.post<LoginRes>('/user/login', { data: data });
+  return service.post<Required<LoginState>>('/user/login', { data: data });
 }
 
 export function logout() {
@@ -13,7 +13,7 @@ export function logout() {
 }
 
 export function getUserInfo() {
-  return service.post<UserState>('/user/info');
+  return service.post<Required<LoginState>>('/user/info');
 }
 
 export function getMenuList() {

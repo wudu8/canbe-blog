@@ -10,8 +10,8 @@ export default [
       return resultSuccess([
         {
           id: 1,
-          title: '前端',
-          articlePath: 'sdads',
+          title: '@cword(20)',
+          articlePath: '@url()',
           description: '啊实打实大苏打实打实大苏打实打实的',
           viewNum: 215,
           likeNum: 354,
@@ -22,9 +22,8 @@ export default [
         },
         {
           id: 2,
-          title:
-            '啊实打实大苏打实打实大苏打实打实的啊实打实大苏打实打实大苏打实打实的啊实打实大苏打实打实大苏打实打实的啊实打实大苏打实打实大苏打实打实的啊实打实大苏打实打实大苏打实打实的实大苏打实打实大苏打实打实的',
-          articlePath: 'qweqdsz',
+          title: '@cword(80)',
+          articlePath: '@url()',
           description: '啊实打实大苏打实打实大苏打实打实的',
           viewNum: 215,
           likeNum: 354,
@@ -43,8 +42,8 @@ export default [
         },
         {
           id: 3,
-          title: 'Java',
-          articlePath: 'afgdfds',
+          title: '@cword(30)',
+          articlePath: '@url()',
           description: '啊实打实大苏打实打实大苏打实打实的',
           viewNum: 215,
           likeNum: 354,

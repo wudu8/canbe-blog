@@ -17,3 +17,7 @@ export interface UserState {
   certification?: number;
   role: RoleType;
 }
+export interface LoginState {
+  userInfo: UserState;
+  token?: string;
+}

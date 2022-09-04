@@ -4,44 +4,50 @@ import { defineStore } from 'pinia';
 import { login as userLogin, logout as userLogout, getUserInfo } from '@/apis/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
-import { UserState } from './types';
+import { LoginState, UserState } from './types';
 import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
-  state: (): UserState => ({
-    name: undefined,
-    avatar: undefined,
-    job: undefined,
-    organization: undefined,
-    location: undefined,
-    email: undefined,
-    introduction: undefined,
-    personalWebsite: undefined,
-    jobName: undefined,
-    organizationName: undefined,
-    locationName: undefined,
-    phone: undefined,
-    registrationDate: undefined,
-    accountId: undefined,
-    certification: undefined,
-    role: ''
+  state: (): LoginState => ({
+    token: undefined,
+    userInfo: {
+      name: undefined,
+      avatar: undefined,
+      job: undefined,
+      organization: undefined,
+      location: undefined,
+      email: undefined,
+      introduction: undefined,
+      personalWebsite: undefined,
+      jobName: undefined,
+      organizationName: undefined,
+      locationName: undefined,
+      phone: undefined,
+      registrationDate: undefined,
+      accountId: undefined,
+      certification: undefined,
+      role: ''
+    }
   }),
 
   getters: {
-    userInfo(state: UserState): UserState {
-      return { ...state };
+    user(state: LoginState): UserState {
+      return { ...state.userInfo };
+    },
+    isLogin(state: LoginState): boolean {
+      return !!state.token;
     }
   },
 
   actions: {
     switchRoles() {
       return new Promise(resolve => {
-        this.role = this.role === 'user' ? 'admin' : 'user';
-        resolve(this.role);
+        this.userInfo.role = this.userInfo.role === 'user' ? 'admin' : 'user';
+        resolve(this.userInfo.role);
       });
     },
     // Set user's information
-    setInfo(partial: Partial<UserState>) {
+    setInfo(partial: Partial<LoginState>) {
       this.$patch(partial);
     },
 
@@ -61,6 +67,7 @@ const useUserStore = defineStore('user', {
     async login(loginForm: LoginData) {
       try {
         const res = await userLogin(loginForm);
+        this.setInfo(res.result);
         setToken(res.result.token);
       } catch (err) {
         clearToken();
