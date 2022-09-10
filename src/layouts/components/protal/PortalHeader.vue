@@ -3,6 +3,7 @@ import { useAppStore } from '@/store';
 import { useClasses } from '@/hooks';
 
 // import Menu from '@/components/menu/index.vue';
+import TopMenu from './TopMenu.vue';
 import Logo from '../common/Logo.vue';
 import HeaderRight from './HeaderRight.vue';
 
@@ -13,9 +14,7 @@ const classes = useClasses('header');
   <a-layout-header :class="{ [classes]: true, 'header-shadow': true }">
     <div :class="{ mobile: appStore.isMobile }" class="header-content">
       <Logo :systemTitle="appStore.protalTitle" :showTitle="!appStore.isMobile" />
-      <div class="menu-wrapper inline-block">
-        <!-- <Menu /> -->
-      </div>
+      <TopMenu />
       <HeaderRight />
     </div>
   </a-layout-header>
@@ -36,6 +35,10 @@ const classes = useClasses('header');
     height: 100%;
     display: flex;
     justify-content: space-between;
+
+    :deep(.logo-wrapper) {
+      flex-shrink: 0;
+    }
 
     &.mobile {
       padding: 0 8px;

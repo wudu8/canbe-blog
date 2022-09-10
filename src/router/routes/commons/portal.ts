@@ -9,11 +9,41 @@ const routes: Array<RouteRecordRaw> = [
     path: pathEnum.home,
     name: 'home',
     meta: {
-      title: t('protal.home.title'),
+      title: t('protal.home_page.title'),
+      browserTitle: t('protal.home.title'),
+      showSystemTitle: true,
       sort: 1
     },
     component: PortalLayout,
-    children: []
+    children: [
+      {
+        path: pathEnum.WebmasterTools,
+        name: 'Webmaster_tools',
+        meta: {
+          title: t('protal.Webmaster_tools.title'),
+          sort: 1
+        },
+        component: () => import('@/views/exception/404.vue')
+      },
+      {
+        path: pathEnum.openSource,
+        name: 'open_source',
+        meta: {
+          title: t('protal.open_source.title'),
+          sort: 1
+        },
+        component: () => import('@/views/exception/404.vue')
+      },
+      {
+        path: pathEnum.aboutUs,
+        name: 'about_us',
+        meta: {
+          title: t('protal.about_us.title'),
+          sort: 1
+        },
+        component: () => import('@/views/exception/404.vue')
+      }
+    ]
   }
 ];
 

@@ -6,8 +6,23 @@ export interface AppState {
   serverMenu: RouteRecordNormalized[];
   logo: string;
   year: string;
-  theme: string;
   protalTitle: string;
   adminTitle: string;
+  settings: AppSettings;
+}
+
+export interface AppSettings {
+  theme: string;
+  colorWeak: boolean;
+  navbar: boolean;
+  menuFromServer: boolean;
+  menu: boolean;
+  hideMenu: boolean;
+  menuCollapse: boolean;
+  footer: boolean;
+  themeColor: string;
+  menuWidth: number;
+  globalSettings: boolean;
+  tabBar: boolean;
   [key: string]: unknown;
 }

@@ -6,7 +6,8 @@ import {
   createVitePlugins,
   convertViteEnv,
   createViteServer,
-  createViteBuild
+  createViteBuild,
+  createViteOptimizeDeps
 } from './config';
 
 // https://vitejs.dev/config/
@@ -28,6 +29,8 @@ export default defineConfig(({ command, mode }) => {
     define: {
       __DEV__: !isBuild
     },
+    // 依赖优化选项
+    ...createViteOptimizeDeps(envConfig),
     // 样式配置
     ...createViteCss(envConfig, isBuild),
     // 注册vite插件

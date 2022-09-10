@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
@@ -11,6 +11,7 @@ const appStore = useAppStore();
 const router = useRouter();
 const classes = useClasses('header-right');
 const dropdownStatus = ref(false);
+const size = computed(() => (!appStore.isMobile ? 'large' : 'small'));
 
 const handleSelect = (path: VKey) => {
   router.push(path as string);
@@ -21,7 +22,7 @@ const popupVisibleChange = (visible: boolean) => {
 </script>
 <template>
   <div :class="classes">
-    <a-space size="large" class="full-height-space">
+    <a-space :size="size" class="full-height-space">
       <a-input-search
         :class="{ 'header-search': true, mobile: appStore.isMobile }"
         :placeholder="$t('protal.header.right.search')"

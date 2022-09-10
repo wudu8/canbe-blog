@@ -1,0 +1,14 @@
+{
+  "theme": "light",
+  "colorWeak": false,
+  "navbar": true,
+  "menuFromServer": true,
+  "menu": true,
+  "hideMenu": false,
+  "menuCollapse": false,
+  "footer": true,
+  "themeColor": "#165DFF",
+  "menuWidth": 220,
+  "globalSettings": false,
+  "tabBar": false
+}

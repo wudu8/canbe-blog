@@ -12,11 +12,16 @@ function setupPageGuard(router: Router) {
     setRouteEmitter(to);
   });
   router.afterEach(guard => {
-    document.title = guard?.meta?.customTitle
-      ? guard.meta.customTitle
-      : guard?.meta?.title && window?.systemOptions?.title
-      ? `${window.systemOptions.title} - ${guard.meta.title}`
-      : document.title;
+    let title = guard?.meta?.browserTitle ? guard.meta.browserTitle : guard?.meta?.title;
+    if (title) {
+      if (guard?.meta?.showSystemTitle && window?.systemOptions?.title) {
+        title = `${window.systemOptions.title} - ${title}`;
+      }
+    } else {
+      title = document.title;
+    }
+
+    document.title = title;
   });
 }
 function endPageGuard(router: Router): void {

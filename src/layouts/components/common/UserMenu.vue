@@ -34,7 +34,11 @@ const userClick = () => {
       >
         <icon-notification :class="`${classes}-icon`" />
       </a-badge>
-      <a-avatar :auto-fix-font-size="false" class="user-avatar-wrap" @click="userClick">
+      <a-avatar
+        :auto-fix-font-size="false"
+        :class="[{ 'avatar-hover': !userStore.isLogin }, 'user-avatar-wrap']"
+        @click="userClick"
+      >
         <img
           v-if="userStore.isLogin && userStore.user.avatar"
           alt="avatar"
@@ -75,6 +79,11 @@ const userClick = () => {
 
 .user-avatar-wrap {
   cursor: pointer;
+
+  &.avatar-hover:hover {
+    background-color: #999;
+    transition: all 0.3s;
+  }
 
   :deep(.arco-avatar-text) {
     font-size: 12px;

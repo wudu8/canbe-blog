@@ -28,7 +28,7 @@ const classes = useClasses('article-list-item');
       <template #title>
         <div :class="{ [`${classes}-title`]: true, reverse: appStore.isMobile }">
           <ArticleInfo :item="props.item" />
-          <ArticleTitle ref="" :item="props.item" />
+          <ArticleTitle ref="ArticleTitleRef" :item="props.item" />
         </div>
       </template>
       <template #description>
