@@ -2,6 +2,7 @@
 import { defineComponent, computed } from 'vue';
 
 import { Spin } from '@arco-design/web-vue';
+import { useClasses } from '@/hooks';
 
 export default defineComponent({
   name: 'BoxSpin',
@@ -22,26 +23,22 @@ export default defineComponent({
     const showWrapper = computed(() => {
       return (!slots.default && bindProps.value.loading) || slots.default;
     });
-    return { bindProps, showWrapper };
+
+    const classes = useClasses('spin');
+    return { bindProps, showWrapper, classes };
   }
 });
 </script>
 
 <template>
-  <div class="box-wrapper" v-if="showWrapper">
-    <a-spin v-if="$slots.default" v-bind="bindProps">
-      <slot></slot>
-    </a-spin>
-    <a-spin v-else-if="bindProps.loading" v-bind="bindProps" />
-  </div>
+  <a-spin v-if="$slots.default" v-bind="bindProps" :class="classes">
+    <slot></slot>
+  </a-spin>
+  <a-spin v-else-if="bindProps.loading" v-bind="bindProps" :class="classes" />
 </template>
 
 <style lang="less" scope>
-.box-wrapper {
+.@{app-prefix}-spin {
   width: 100%;
-
-  .arco-spin {
-    width: 100%;
-  }
 }
 </style>

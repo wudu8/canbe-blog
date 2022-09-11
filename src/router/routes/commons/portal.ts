@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'open_source',
         meta: {
           title: t('protal.open_source.title'),
-          sort: 1
+          sort: 2
         },
         component: () => import('@/views/exception/404.vue')
       },
@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'about_us',
         meta: {
           title: t('protal.about_us.title'),
-          sort: 1
+          sort: 3
         },
         component: () => import('@/views/exception/404.vue')
       }

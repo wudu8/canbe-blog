@@ -7,8 +7,8 @@ import { isString } from 'lodash-es';
 import { useAppStore } from '@/store';
 import { useClasses, useMenuTree } from '@/hooks';
 import { protalMenus } from '@/router/routes';
-import { protalMenusEnum } from '@/router/path';
-import { filterTrees } from '@/utils/treeUtils';
+import { protalHeaderPathEnum } from '@/router/path';
+import { filterAndFlattenTrees } from '@/utils/treeUtils';
 
 const appStore = useAppStore();
 const classes = useClasses('header-menu');
@@ -18,8 +18,8 @@ const currentRoute = useRoute();
 const { menuTree } = useMenuTree(computed(() => protalMenus));
 
 const topMenus = computed(() => {
-  const paths = Object.values(protalMenusEnum);
-  return filterTrees(menuTree.value, item => paths.includes(item.path));
+  const paths = Object.values(protalHeaderPathEnum);
+  return filterAndFlattenTrees(menuTree.value, item => paths.includes(item.path));
 });
 
 const selectedRoute = computed(() => {

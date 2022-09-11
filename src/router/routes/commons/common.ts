@@ -5,7 +5,7 @@ import { t } from '@/locale';
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: pathEnum.common,
+    path: '/common',
     name: 'common',
     redirect: pathEnum.login,
     component: EmptyLayout,

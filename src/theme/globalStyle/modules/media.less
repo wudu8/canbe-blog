@@ -6,7 +6,7 @@
 @media screen and (max-width: @screen-xl) {
   .@{app-prefix}-blog-layout{
     .@{app-prefix}-header > .header-content,
-    .@{app-prefix}-content {
+    .@{app-prefix}-blog-layout-content {
       width: 1190px !important;
     }
   }
@@ -14,7 +14,7 @@
 @media screen and (min-width: @screen-xl) and (max-width: @screen-xxl) {
   .@{app-prefix}-blog-layout{
     .@{app-prefix}-header > .header-content,
-    .@{app-prefix}-content {
+    .@{app-prefix}-blog-layout-content {
       width: 1280px !important;
     }
   }
@@ -23,7 +23,7 @@
 @media screen and (min-width: 2000px) {
   .@{app-prefix}-blog-layout{
     .@{app-prefix}-header > .header-content,
-    .@{app-prefix}-content {
+    .@{app-prefix}-blog-layout-content {
       width: 70% !important;
       min-width: 1318px;
     }
@@ -31,12 +31,12 @@
 }
 .@{app-prefix}-blog-layout{
   .@{app-prefix}-header > .header-content,
-  .@{app-prefix}-content {
+  .@{app-prefix}-blog-layout-content {
     width: 1380px;
     max-width: 100%;
     margin: 0 auto;
   }
-  .@{app-prefix}-content{
+  .@{app-prefix}-blog-layout-content{
     min-height: calc(100vh - (@protal-header-height + @protal-footer-height + 16px));
   }
 }

@@ -2,18 +2,26 @@
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useClasses } from '@/hooks';
-import { useAppStore } from '@/store';
+import { useAppStore, useUserStore } from '@/store';
 import { pathEnum } from '@/router/path';
 
 import UserMenu from '../common/UserMenu.vue';
 
+interface Props {
+  isCreator?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), {
+  isCreator: false
+});
+
 const appStore = useAppStore();
+const userStore = useUserStore();
 const router = useRouter();
 const classes = useClasses('header-right');
 const dropdownStatus = ref(false);
 const size = computed(() => (!appStore.isMobile ? 'large' : 'small'));
 
-const handleSelect = (path: VKey) => {
+const gotoPath = (path: VKey) => {
   router.push(path as string);
 };
 const popupVisibleChange = (visible: boolean) => {
@@ -23,19 +31,24 @@ const popupVisibleChange = (visible: boolean) => {
 <template>
   <div :class="classes">
     <a-space :size="size" class="full-height-space">
-      <a-input-search
-        :class="{ 'header-search': true, mobile: appStore.isMobile }"
-        :placeholder="$t('protal.header.right.search')"
-        search-button
-      />
-      <a-button-group v-if="!appStore.isMobile" type="primary">
-        <a-button>创作中心</a-button>
+      <template v-if="!props.isCreator">
+        <a-input-search
+          :class="{ 'header-search': true, mobile: appStore.isMobile }"
+          :placeholder="$t('protal.header.right.search')"
+          search-button
+        />
+      </template>
+      <a-button-group
+        v-if="!appStore.isMobile && !props.isCreator && userStore.isLogin"
+        type="primary"
+      >
+        <a-button @click="gotoPath(pathEnum.creator)">{{ $t('protal.creator.title') }}</a-button>
 
         <a-dropdown
           v-model="dropdownStatus"
           position="br"
           @popup-visible-change="popupVisibleChange"
-          @select="handleSelect"
+          @select="gotoPath"
         >
           <a-button>
             <template #icon>
@@ -54,7 +67,7 @@ const popupVisibleChange = (visible: boolean) => {
               <template #icon>
                 <icon-archive />
               </template>
-              {{ $t('protal.header.right.drafts') }}
+              {{ $t('protal.drafts.title') }}
             </a-doption>
           </template>
         </a-dropdown>

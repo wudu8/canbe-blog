@@ -3,17 +3,35 @@
  */
 
 // 门户导航路由
-export const protalMenusEnum = {
+export const protalHeaderPathEnum = {
+  /** 首页 */
   home: '/',
+  /** 站长工具 */
   WebmasterTools: '/tools',
+  /** 生态产品 */
   openSource: '/development',
+  /** 关于我们 */
   aboutUs: '/about_us'
+};
+
+// 门户 创作者中心 路由
+export const creatorPathEnum = {
+  /** 创作者中心 */
+  creator: '/creator',
+  /** 创作者中心-首页 */
+  creatorHome: '/creator/home',
+  /** 草稿箱 */
+  drafts: '/creator/drafts',
+  /** 文章管理 */
+  creatorArticle: '/creator/article',
+  /** 专栏管理 */
+  creatorColumn: '/creator/column'
 };
 
 // 门户权限控制路由
 const protalPathEnum = {
-  editArticle: '/article/edit',
-  drafts: '/article/drafts'
+  /** 编辑文章页面 */
+  editArticle: '/article/edit'
 };
 
 // 管理端权限控制路由
@@ -21,16 +39,18 @@ const adminPathEnum = {};
 
 // 公共路由
 const commonPathEnum = {
-  common: '/common',
+  /** 登录页面 */
   login: '/login'
 };
 
 // 异常跳转路由
 const exceptionPathEnum = {
+  /** 404页面 */
   notFound: '/exception/not_found'
 };
 export const pathEnum = {
-  ...protalMenusEnum,
+  ...creatorPathEnum,
+  ...protalHeaderPathEnum,
   ...protalPathEnum,
   ...adminPathEnum,
   ...exceptionPathEnum,

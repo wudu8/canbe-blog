@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import type { ArticleListData } from '@/components/article-card';
 
-import { ref, onMounted } from 'vue';
+import type { PortalLayoutProvide } from '@/layouts/const';
+
+import { ref, onMounted, watch, nextTick } from 'vue';
 import { useClasses } from '@/hooks';
 import { getArticleList } from '@/apis/article';
+import { useLayoutScroll } from '@/layouts/hooks/useScroll';
+import { portalLayoutToken } from '@/layouts/const';
 
 import ArticleList from '@/components/article-card';
 import Spin from '@/components/box-spin/Spin.vue';
@@ -15,12 +19,29 @@ const classes = useClasses('article-list');
 
 const dataSource = ref<ArticleListData[]>([]);
 
-onMounted(() => {
-  initLoading.value = true;
+const { toBottom, isScrolling } = useLayoutScroll<PortalLayoutProvide>(portalLayoutToken);
+
+const loadArticleList = async (cb: Fn) => {
   getArticleList().then(res => {
     if (res.success) {
-      dataSource.value = res.result;
+      dataSource.value.push(...res.result);
+      nextTick(cb);
     }
+  });
+};
+
+watch(isScrolling, value => {
+  if (!value && toBottom.value < 500 && !initLoading.value && !articleLoading.value) {
+    !articleLoading.value && (articleLoading.value = true);
+    loadArticleList(() => {
+      articleLoading.value = false;
+    });
+  }
+});
+
+onMounted(async () => {
+  initLoading.value = true;
+  await loadArticleList(() => {
     initLoading.value = false;
   });
 });
@@ -29,7 +50,9 @@ onMounted(() => {
 <template>
   <div :class="classes">
     <ArticleList :dataSource="dataSource" :loading="initLoading" />
-    <Spin :loading="articleLoading" dot class="spin-wrap" />
+    <div class="spin-wrap">
+      <Spin :loading="articleLoading" dot :tip="$t('global.loadding.title')"></Spin>
+    </div>
   </div>
 </template>
 
@@ -40,7 +63,8 @@ onMounted(() => {
   border-radius: 2px;
 
   .spin-wrap {
-    margin: 24px 0;
+    padding-top: 24px;
+    height: 100px;
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { t } from '@/locale';
-import { useControlledPropByEmit } from '@/hooks/props/useControlledProp';
+import { useControlledPropByEmit } from '@/hooks';
 import { useAppStore } from '@/store';
 
 interface Props {
@@ -61,7 +61,7 @@ const comfirmSwitch = () => {
     <div class="right-suffix">
       <div v-if="props.tip && !appStore.isMobile" class="tip-text">{{ props.tip }}</div>
       <a-button type="outline" class="windi-ml-2 windi-mr-2" @click="handleDrafts">{{
-        $t('protal.editor.header.drafts')
+        $t('protal.drafts.title')
       }}</a-button>
       <a-button type="primary" class="windi-ml-2 windi-mr-2" @click="handlePublish">{{
         $t('protal.editor.header.publish')

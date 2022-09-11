@@ -9,7 +9,11 @@ export const bMenuProps = {
   },
   useCollapsed: {
     type: Boolean,
-    default: false
+    default: true
+  },
+  defaultOpenKeys: {
+    type: Array as PropType<string[]>,
+    default: () => []
   }
 };
 

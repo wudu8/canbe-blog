@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { defineComponent, ref, h, compile, computed } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
 import type { RouteMeta } from 'vue-router';
 import { useAppStore } from '@/store';
@@ -8,6 +8,8 @@ import { openWindow, regexUrl } from '@/utils/menuUtils';
 import { useMenuTree } from '@/hooks';
 import routes from '@/router/routes';
 import { bMenuProps } from './types';
+
+import SvgIcon from '@/components/svg-icon/Index.vue';
 
 export default defineComponent({
   emit: ['collapse'],
@@ -100,14 +102,16 @@ export default defineComponent({
         if (_route) {
           _route.forEach(element => {
             // This is demo, modify nodes as needed
-            const icon = element?.meta?.icon ? () => h(compile(`<${element?.meta?.icon}/>`)) : null;
+            const icon = element?.meta?.icon
+              ? () => <SvgIcon name={element.meta!.icon!} className="svg-menu-icon" />
+              : null;
             const node =
               element?.children && element?.children.length !== 0 ? (
                 <a-sub-menu
                   key={element?.name}
                   v-slots={{
                     icon,
-                    title: () => h(compile(element?.meta?.title || ''))
+                    title: () => element?.meta?.title || ''
                   }}
                 >
                   {travel(element?.children)}
@@ -129,6 +133,7 @@ export default defineComponent({
       <a-menu
         v-model:collapsed={collapsed.value}
         v-model:open-keys={openKeys.value}
+        default-open-keys={props.defaultOpenKeys}
         show-collapse-button={!appStore.isMobile}
         auto-open={false}
         selected-keys={selectedKey.value}
@@ -151,10 +156,8 @@ export default defineComponent({
     align-items: center;
   }
 
-  .arco-icon {
-    &:not(.arco-icon-down) {
-      font-size: 18px;
-    }
+  .svg-menu-icon {
+    font-size: 18px;
   }
 }
 </style>

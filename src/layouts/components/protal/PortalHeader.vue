@@ -7,6 +7,13 @@ import TopMenu from './TopMenu.vue';
 import Logo from '../common/Logo.vue';
 import HeaderRight from './HeaderRight.vue';
 
+interface Props {
+  isCreator?: boolean;
+}
+const props = withDefaults(defineProps<Props>(), {
+  isCreator: false
+});
+
 const appStore = useAppStore();
 const classes = useClasses('header');
 </script>
@@ -14,8 +21,9 @@ const classes = useClasses('header');
   <a-layout-header :class="{ [classes]: true, 'header-shadow': true }">
     <div :class="{ mobile: appStore.isMobile }" class="header-content">
       <Logo :systemTitle="appStore.protalTitle" :showTitle="!appStore.isMobile" />
-      <TopMenu />
-      <HeaderRight />
+      <TopMenu v-if="!props.isCreator" />
+      <div v-else class="creator-title">{{ $t('protal.creator.title') }}</div>
+      <HeaderRight :is-creator="isCreator" />
     </div>
   </a-layout-header>
 </template>
@@ -42,6 +50,13 @@ const classes = useClasses('header');
 
     &.mobile {
       padding: 0 8px;
+    }
+
+    .creator-title {
+      color: @primary-color;
+      font-size: 18px;
+      width: 100%;
+      padding-left: 24px;
     }
   }
 

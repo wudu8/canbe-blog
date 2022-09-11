@@ -32,7 +32,9 @@ const classes = useClasses('article-list-item');
         </div>
       </template>
       <template #description>
-        <div :class="`${classes}-description`">{{ props.item.description }}</div>
+        <div :class="[`${classes}-description`, 'single-row-ellipsis']">
+          {{ props.item.description }}
+        </div>
         <ViewAction
           :viewLabel="props.item.viewNum"
           :likeLabel="props.item.likeNum"

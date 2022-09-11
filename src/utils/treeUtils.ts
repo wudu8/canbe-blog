@@ -2,7 +2,7 @@
  * 树结构数组工具函数
  */
 
-import { isArray, merge } from 'lodash-es';
+import { cloneDeep, isArray, merge } from 'lodash-es';
 
 const defaultOpions = {
   children: 'children',
@@ -41,6 +41,44 @@ export interface TreeOptions {
   preOrder?: boolean;
 }
 
+export interface OrderTreeOptions extends TreeOptions {
+  /** 是否为先序遍历 */
+  preOrder?: boolean;
+}
+
+/**
+ * 遍历tree数组
+ * @param tree 要遍历的树形结构
+ * @param handleFn 节点处理函数
+ * @param options 配置对象
+ * @returns 扁平化的数组
+ */
+export function forEachTree<T extends BaseTree>(
+  tree: T[],
+  handleFn: (item: T, index: number, arr: T[]) => void,
+  options?: OrderTreeOptions
+) {
+  const mergeOptions = merge(defaultOpions, options);
+  const traversal = (
+    tree: T[],
+    handleFn: (item: T, index: number, arr: T[]) => void,
+    options: Required<OrderTreeOptions>
+  ) => {
+    tree.forEach((item, index, arr) => {
+      traversalTree(
+        () => handleFn(item, index, arr),
+        () => {
+          if (isArray(item[options.children])) {
+            traversal(item[options.children], handleFn, options);
+          }
+        },
+        options.preOrder
+      );
+    });
+  };
+  traversal(cloneDeep(tree), handleFn, mergeOptions);
+}
+
 /**
  * 扁平化树形结构数据，返回一维数组
  * @param tree 要遍历的树形结构
@@ -51,62 +89,63 @@ export interface TreeOptions {
 export function flattenTree<T extends SafeAny, K extends BaseTree>(
   tree: K[],
   handleFn: (item: K, index: number, arr: K[]) => T,
-  options?: TreeOptions
+  options?: OrderTreeOptions
 ): T[] {
-  const mergeOptions = merge(defaultOpions, options);
   const flattenArr: T[] = [];
-  const flatten = (
-    tree: K[],
-    handleFn: (item: K, index: number, arr: K[]) => T,
-    options: TreeOptions
-  ) => {
-    tree.forEach((item, index, arr) => {
-      traversalTree(
-        () => flattenArr.push(handleFn(item, index, arr)),
-        () => {
-          if (isArray(item[mergeOptions.children])) {
-            flatten(item[mergeOptions.children], handleFn, options);
-          }
-        },
-        mergeOptions.preOrder
-      );
-    });
-  };
-  flatten(tree, handleFn, mergeOptions);
+  forEachTree(
+    cloneDeep(tree),
+    (item, index, arr) => {
+      flattenArr.push(handleFn(item, index, arr));
+    },
+    options
+  );
   return flattenArr;
 }
 
 /**
- * 过滤树形结构数据，返回一维数组
+ * 过滤树形结构数据，并扁平化处理，返回一维数组
  * @param tree 要遍历的树形结构
  * @param handleFn 节点处理函数
  * @param options 配置对象
  * @returns 过滤后的数组
  */
-export function filterTrees<T extends BaseTree>(
+export function filterAndFlattenTrees<T extends BaseTree>(
   tree: T[],
   handleFn: (item: T, index: number, arr: T[]) => boolean,
-  options?: TreeOptions
+  options?: OrderTreeOptions
 ): T[] {
-  const mergeOptions = merge(defaultOpions, options);
   const filtered: T[] = [];
-  const traversal = (
-    tree: T[],
-    handleFn: (item: T, index: number, arr: T[]) => boolean,
-    options: TreeOptions
-  ) => {
-    tree.forEach((item, index, arr) => {
-      traversalTree(
-        () => !!handleFn(item, index, arr) && filtered.push(item),
-        () => {
-          if (isArray(item[mergeOptions.children])) {
-            traversal(item[mergeOptions.children], handleFn, options);
-          }
-        },
-        mergeOptions.preOrder
-      );
+  forEachTree(
+    cloneDeep(tree),
+    (item, index, arr) => {
+      !!handleFn(item, index, arr) && filtered.push(item);
+    },
+    options
+  );
+  return filtered;
+}
+
+/**
+ * 根据key删除tree元素，会删除所有相同key对应的元素
+ * @param tree 要遍历的树形结构
+ * @param handleFn 节点处理函数
+ * @param options 配置对象
+ * @returns 过滤后的数组
+ */
+export function removeTreesByKey<T extends BaseTree>(
+  tree: T[],
+  key: SafeAny,
+  options?: TreeOptions
+) {
+  const mergeOptions = merge(defaultOpions, options);
+  const traversal = (dataTree: T[], key: SafeAny, options: Required<TreeOptions>) => {
+    dataTree.forEach((item, index) => {
+      if (item[options.key] === key) {
+        dataTree.splice(index, 1);
+      } else if (isArray(item[options.children])) {
+        traversal(item[options.children], key, options);
+      }
     });
   };
-  traversal(tree, handleFn, mergeOptions);
-  return filtered;
+  traversal(tree, key, mergeOptions);
 }

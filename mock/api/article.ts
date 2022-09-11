@@ -1,3 +1,4 @@
+import mockjs from 'mockjs';
 import { MockMethod } from 'vite-plugin-mock';
 import { resultSuccess } from '../utils';
 
@@ -7,52 +8,24 @@ export default [
     method: 'get',
     timeout: 500,
     response: () => {
-      return resultSuccess([
-        {
-          id: 1,
-          title: '@cword(20)',
-          articlePath: '@url()',
-          description: '啊实打实大苏打实打实大苏打实打实的',
-          viewNum: 215,
-          likeNum: 354,
-          commentNum: 183,
-          author: '字节猿',
-          dateTime: '2022-05-12',
-          tags: ['前端', 'js']
-        },
-        {
-          id: 2,
-          title: '@cword(80)',
-          articlePath: '@url()',
-          description: '啊实打实大苏打实打实大苏打实打实的',
-          viewNum: 215,
-          likeNum: 354,
-          commentNum: 183,
-          author: '字节猿',
-          dateTime: '2022-05-12',
-          tags: ['前端', 'js'],
-          beforeTag: {
-            color: 'red',
-            label: '原力计划'
-          },
-          afterTag: {
-            color: 'red',
-            label: '千次阅读'
-          }
-        },
-        {
-          id: 3,
-          title: '@cword(30)',
-          articlePath: '@url()',
-          description: '啊实打实大苏打实打实大苏打实打实的',
-          viewNum: 215,
-          likeNum: 354,
-          commentNum: 183,
-          author: '字节猿',
-          dateTime: '2022-05-12',
-          tags: ['前端', 'js']
-        }
-      ]);
+      return resultSuccess(
+        mockjs.mock({
+          'array|10-12': [
+            {
+              id: '@guid',
+              title: '@cword(20)',
+              articlePath: '@url()',
+              description: '@paragraph',
+              viewNum: '@integer(60, 10000)',
+              likeNum: '@integer(60, 10000)',
+              commentNum: '@integer(60, 10000)',
+              author: '@cname',
+              dateTime: '@date',
+              tags: ['前端', 'js']
+            }
+          ]
+        }).array
+      );
     }
   },
   {
