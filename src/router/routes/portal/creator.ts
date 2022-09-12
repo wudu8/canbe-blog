@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'creator_home',
         meta: {
           icon: 'creator-home',
-          title: t('protal.creator_home.title'),
+          title: t('portal.creator_home.title'),
           sort: 1
         },
         component: () => import('@/views/portal/home/Index.vue')
@@ -25,8 +25,8 @@ const routes: Array<RouteRecordRaw> = [
         path: '/creator_content',
         name: 'creator_content',
         meta: {
-          icon: 'creator-home',
-          title: t('protal.creator_content.title'),
+          icon: 'creator-content',
+          title: t('portal.creator_content.title'),
           sort: 2
         },
         children: [
@@ -34,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
             path: pathEnum.creatorArticle,
             name: 'creator_article',
             meta: {
-              title: t('protal.creator_article.title'),
+              title: t('portal.creator_article.title'),
               sort: 1
             },
             component: () => import('@/views/portal/home/Index.vue')
@@ -43,7 +43,7 @@ const routes: Array<RouteRecordRaw> = [
             path: pathEnum.drafts,
             name: 'drafts',
             meta: {
-              title: t('protal.drafts.title'),
+              title: t('portal.drafts.title'),
               sort: 2
             },
             component: () => import('@/views/portal/home/Index.vue')
@@ -52,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
             path: pathEnum.creatorColumn,
             name: 'creator_column',
             meta: {
-              title: t('protal.creator_column.title'),
+              title: t('portal.creator_column.title'),
               sort: 3
             },
             component: () => import('@/views/portal/home/Index.vue')

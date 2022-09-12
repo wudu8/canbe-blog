@@ -20,9 +20,10 @@ const classes = useClasses('header');
 <template>
   <a-layout-header :class="{ [classes]: true, 'header-shadow': true }">
     <div :class="{ mobile: appStore.isMobile }" class="header-content">
-      <Logo :systemTitle="appStore.protalTitle" :showTitle="!appStore.isMobile" />
+      <Logo :systemTitle="appStore.portalTitle" :showTitle="!appStore.isMobile" />
       <TopMenu v-if="!props.isCreator" />
-      <div v-else class="creator-title">{{ $t('protal.creator.title') }}</div>
+      <div v-else class="creator-title">{{ $t('portal.creator.title') }}</div>
+      <slot></slot>
       <HeaderRight :is-creator="isCreator" />
     </div>
   </a-layout-header>
@@ -34,9 +35,9 @@ const classes = useClasses('header');
   top: 0;
   z-index: 10;
   width: 100%;
-  height: @protal-header-height;
-  line-height: @protal-header-height;
-  background: @protal-header-background;
+  height: @portal-header-height;
+  line-height: @portal-header-height;
+  background: @portal-header-background;
   transition: all 0.2s;
 
   .header-content {

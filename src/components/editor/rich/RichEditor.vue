@@ -49,7 +49,7 @@ const editorConfig = computed(() => {
 });
 
 const placeholder = computed(() => {
-  return props.placeholder ?? t('protal.editor.content.placeholder');
+  return props.placeholder ?? t('portal.editor.content.placeholder');
 });
 
 // 组件销毁时，也及时销毁编辑器

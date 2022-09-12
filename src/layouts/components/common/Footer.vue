@@ -18,10 +18,10 @@ const footerClasses = useClasses('footer');
 
 <style lang="less" scoped>
 .@{app-prefix}-footer{
-  height: @protal-footer-height;
+  height: @portal-footer-height;
   padding-top: 48px;
-  line-height: calc(@protal-footer-height - 48px);
+  line-height: calc(@portal-footer-height - 48px);
   text-align: center;
-  background: @protal-footer-background;
+  background: @portal-footer-background;
 }
 </style>

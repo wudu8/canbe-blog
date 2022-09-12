@@ -1,5 +1,6 @@
 export type RoleType = '' | '*' | 'admin' | 'user';
 export interface UserState {
+  id?: string;
   name?: string;
   avatar?: string;
   job?: string;

@@ -3,7 +3,7 @@
  */
 
 // 门户导航路由
-export const protalHeaderPathEnum = {
+export const portalHeaderPathEnum = {
   /** 首页 */
   home: '/',
   /** 站长工具 */
@@ -29,9 +29,10 @@ export const creatorPathEnum = {
 };
 
 // 门户权限控制路由
-const protalPathEnum = {
+const portalPathEnum = {
   /** 编辑文章页面 */
-  editArticle: '/article/edit'
+  editArticle: '/article/edit',
+  userhomepage: '/user/homepage'
 };
 
 // 管理端权限控制路由
@@ -50,8 +51,8 @@ const exceptionPathEnum = {
 };
 export const pathEnum = {
   ...creatorPathEnum,
-  ...protalHeaderPathEnum,
-  ...protalPathEnum,
+  ...portalHeaderPathEnum,
+  ...portalPathEnum,
   ...adminPathEnum,
   ...exceptionPathEnum,
   ...commonPathEnum

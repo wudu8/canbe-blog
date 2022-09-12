@@ -34,7 +34,7 @@ const popupVisibleChange = (visible: boolean) => {
       <template v-if="!props.isCreator">
         <a-input-search
           :class="{ 'header-search': true, mobile: appStore.isMobile }"
-          :placeholder="$t('protal.header.right.search')"
+          :placeholder="$t('portal.header.right.search')"
           search-button
         />
       </template>
@@ -42,7 +42,7 @@ const popupVisibleChange = (visible: boolean) => {
         v-if="!appStore.isMobile && !props.isCreator && userStore.isLogin"
         type="primary"
       >
-        <a-button @click="gotoPath(pathEnum.creator)">{{ $t('protal.creator.title') }}</a-button>
+        <a-button @click="gotoPath(pathEnum.creator)">{{ $t('portal.creator.title') }}</a-button>
 
         <a-dropdown
           v-model="dropdownStatus"
@@ -61,13 +61,13 @@ const popupVisibleChange = (visible: boolean) => {
               <template #icon>
                 <icon-edit />
               </template>
-              {{ $t('protal.header.right.write_article') }}
+              {{ $t('portal.header.right.write_article') }}
             </a-doption>
             <a-doption :value="pathEnum.drafts">
               <template #icon>
                 <icon-archive />
               </template>
-              {{ $t('protal.drafts.title') }}
+              {{ $t('portal.drafts.title') }}
             </a-doption>
           </template>
         </a-dropdown>
@@ -83,9 +83,9 @@ const popupVisibleChange = (visible: boolean) => {
   top: 0;
   z-index: 10;
   width: 100%;
-  height: @protal-header-height;
-  line-height: @protal-header-height;
-  background: @protal-header-background;
+  height: @portal-header-height;
+  line-height: @portal-header-height;
+  background: @portal-header-background;
   transition: all 0.2s;
 
   .header-search {

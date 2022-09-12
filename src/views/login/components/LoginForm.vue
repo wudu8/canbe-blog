@@ -74,7 +74,7 @@ const setRememberPassword = (value: boolean) => {
 <template>
   <div :class="{ dark: props.darkTheme }" class="login-form-wrapper">
     <div class="login-form-title">{{
-      $t('login.form.title', { systemName: appStore.protalTitle })
+      $t('login.form.title', { systemName: appStore.portalTitle })
     }}</div>
     <div class="login-form-error-msg">{{ errorMessage }}</div>
     <a-form

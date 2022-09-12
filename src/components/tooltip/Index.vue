@@ -34,7 +34,7 @@ export default defineComponent({
 
 <style lang="less" scope>
 .@{app-prefix}-tooltip {
-  color: @base-text-color;
+  color: @text-base-color;
   box-shadow: 0 0 6px 1px rgb(0 0 0 / 10%);
 
   &-arrow {

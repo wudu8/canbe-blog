@@ -12,9 +12,9 @@ function goHome() {
   <div class="wrapper-box">
     <img src="@images/exception/404_bg.png" />
     <div class="error-box">
-      <div class="error-text">{{ $t('protal.exception.404.title') }}</div>
+      <div class="error-text">{{ $t('portal.exception.404.title') }}</div>
       <a-button type="primary" size="large" class="back-btn" @click="goHome">{{
-        $t('protal.exception.go_back.btn')
+        $t('portal.exception.go_back.btn')
       }}</a-button>
     </div>
   </div>

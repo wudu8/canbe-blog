@@ -8,10 +8,16 @@ import { isEmpty } from 'lodash-es';
 
 import CMenu from '@/components/menu/Index.vue';
 
+interface Props {
+  mode?: string;
+}
+const props = withDefaults(defineProps<Props>(), {});
+
 // const appStore = useAppStore();
 const classes = useClasses('creator-menu');
 
 const { menuTree } = useMenuTree(computed(() => creatorMenus));
+
 const defaultOpenKeys: string[] = [];
 forEachTree(menuTree.value, item => {
   if (!isEmpty(item.children)) {
@@ -23,8 +29,9 @@ forEachTree(menuTree.value, item => {
   <div :class="[`${classes}-wrapper`]">
     <CMenu
       :class="classes"
+      :mode="props.mode"
       :menus="menuTree"
-      :useCollapsed="true"
+      :useCollapsed="false"
       :defaultOpenKeys="defaultOpenKeys"
     />
   </div>
@@ -34,7 +41,20 @@ forEachTree(menuTree.value, item => {
 .@{app-prefix}-creator-menu-wrapper{
   width: 100%;
 
-  // .@{app-prefix}-creator-menu {
-  // }
+  .@{app-prefix}-creator-menu {
+    font-size: 16px;
+
+    &.arco-menu.arco-menu-light :deep(.arco-menu-inner) {
+      .arco-menu-item.arco-menu-selected {
+        background-color: @background-primary-color;
+      }
+
+      .arco-menu-inline-content .arco-menu-item {
+        &:not(.arco-menu-selected) {
+          color: @weak-text-color;
+        }
+      }
+    }
+  }
 }
 </style>

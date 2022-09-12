@@ -11,7 +11,7 @@ const useAppStore = defineStore('app', {
     serverMenu: [],
     logo: import.meta.env.VITE_APP_LOGO,
     year: import.meta.env.VITE_APP_YEAR,
-    protalTitle: import.meta.env.VITE_APP_FRONT_TITLE,
+    portalTitle: import.meta.env.VITE_APP_FRONT_TITLE,
     adminTitle: import.meta.env.VITE_APP_ADMIN_TITLE,
     settings: { ...defaultSettings }
   }),
@@ -37,7 +37,7 @@ const useAppStore = defineStore('app', {
     },
     // Update app settings
     updateSettings(partial: Partial<AppSettings>) {
-      this.$patch({ settings: { ...this.settings, partial } });
+      this.settings = { ...this.settings, ...partial };
     },
     // Change theme color
     toggleTheme(dark: boolean) {

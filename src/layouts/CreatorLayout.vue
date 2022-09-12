@@ -7,8 +7,8 @@ import { useAppStore } from '@/store';
 import { creatorLayoutToken } from './const';
 
 import RouteView from './components/common/RouteView.vue';
-import PortalHeader from './components/protal/PortalHeader.vue';
-import CreatorMenu from './components/protal/CreatorMenu.vue';
+import PortalHeader from './components/portal/PortalHeader.vue';
+import CreatorSider from './components/portal/CreatorSider.vue';
 
 useResponsive(true);
 const appStore = useAppStore();
@@ -29,12 +29,18 @@ provide<CreatorLayoutProvide>(creatorLayoutToken, {
     theme="light"
     :class="{ [appStore.device]: true, [layoutClasses]: true, [currentLocale]: true }"
   >
-    <PortalHeader :is-creator="true" />
+    <PortalHeader :is-creator="true">
+      <creator-sider
+        v-if="appStore.isMobile"
+        :isMobile="true"
+        :class="[`${creatorClasses}-sider`]"
+      />
+    </PortalHeader>
     <a-layout ref="scrollEl" class="layout-content">
       <a-layout-content class="content-wrapper">
-        <div :class="[creatorClasses, contentClasses]">
-          <creator-menu class="content-left-menu" />
-          <div :class="`${creatorClasses}-content`">
+        <div :class="[creatorClasses, contentClasses, { mobile: appStore.isMobile }]">
+          <creator-sider v-if="!appStore.isMobile" :class="[`${creatorClasses}-sider`]" />
+          <div :class="[`${creatorClasses}-content`]">
             <route-view :haveClass="false" />
           </div>
         </div>
@@ -47,17 +53,31 @@ provide<CreatorLayoutProvide>(creatorLayoutToken, {
 @left-menu-width: 240px;
 
 .@{app-prefix}-creator-layout{
-  display: flex;
+  position: relative;
 
-  .content-left-menu {
-    width: @left-menu-width;
-    flex-shrink: 0;
+  &.mobile {
+    display: flex;
+    flex-direction: column;
+
+    .@{app-prefix}-creator-layout-content {
+      flex-grow: 1;
+      flex-shrink: 1;
+      width: 100%;
+    }
   }
 
-  &-content {
-    flex-grow: 1;
-    flex-shrink: 1;
-    width: calc(100% - @left-menu-width);
+  &:not(.mobile) {
+    .@{app-prefix}-creator-layout-sider {
+      flex-shrink: 0;
+      position: fixed;
+      bottom: @layout-space;
+      top: calc(@portal-header-height + @layout-space);
+    }
+
+    .@{app-prefix}-creator-layout-content {
+      margin-left: calc(@left-menu-width + @layout-space);
+      width: calc(100% - @left-menu-width);
+    }
   }
 }
 
@@ -65,8 +85,8 @@ provide<CreatorLayoutProvide>(creatorLayoutToken, {
   height: 100vh;
 
   .layout-content {
-    margin-top: @protal-header-height;
-    padding-top: 16px;
+    margin-top: @portal-header-height;
+    padding-top: @layout-space;
     overflow: auto;
   }
 

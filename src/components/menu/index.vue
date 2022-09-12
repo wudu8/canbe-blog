@@ -9,8 +9,6 @@ import { useMenuTree } from '@/hooks';
 import routes from '@/router/routes';
 import { bMenuProps } from './types';
 
-import SvgIcon from '@/components/svg-icon/Index.vue';
-
 export default defineComponent({
   emit: ['collapse'],
   props: bMenuProps,
@@ -38,7 +36,7 @@ export default defineComponent({
       }
     });
 
-    const openKeys = ref<string[]>([]);
+    const openKeys = ref<string[]>(props.defaultOpenKeys);
     const selectedKey = ref<string[]>([]);
 
     const goto = (item: RouteRecordRaw) => {
@@ -94,7 +92,7 @@ export default defineComponent({
       }
     }, true);
     const setCollapse = (val: boolean) => {
-      if (!appStore.isMobile) appStore.updateSettings({ menuCollapse: val });
+      if (!appStore.isMobile && props.useCollapsed) appStore.updateSettings({ menuCollapse: val });
     };
 
     const renderSubMenu = () => {
@@ -103,7 +101,7 @@ export default defineComponent({
           _route.forEach(element => {
             // This is demo, modify nodes as needed
             const icon = element?.meta?.icon
-              ? () => <SvgIcon name={element.meta!.icon!} className="svg-menu-icon" />
+              ? () => <svg-icon name={element.meta!.icon!} className="svg-menu-icon" />
               : null;
             const node =
               element?.children && element?.children.length !== 0 ? (
@@ -133,8 +131,8 @@ export default defineComponent({
       <a-menu
         v-model:collapsed={collapsed.value}
         v-model:open-keys={openKeys.value}
-        default-open-keys={props.defaultOpenKeys}
-        show-collapse-button={!appStore.isMobile}
+        mode={props.mode}
+        show-collapse-button={!appStore.isMobile && props.useCollapsed}
         auto-open={false}
         selected-keys={selectedKey.value}
         auto-open-selected={true}

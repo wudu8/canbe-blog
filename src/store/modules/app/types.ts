@@ -6,7 +6,7 @@ export interface AppState {
   serverMenu: RouteRecordNormalized[];
   logo: string;
   year: string;
-  protalTitle: string;
+  portalTitle: string;
   adminTitle: string;
   settings: AppSettings;
 }

@@ -29,7 +29,7 @@ const appStore = useAppStore();
 
   &-siderbar {
     width: 300px;
-    margin-left: 12px;
+    margin-left: @layout-space;
   }
 }
 </style>

@@ -3,14 +3,19 @@ import { flattenTree } from '@/utils/treeUtils';
 import { type RouteRecordRaw } from 'vue-router';
 
 const allModules = import.meta.globEager('@/router/routes/commons/*.ts'),
-  moduleRoutes: RouteRecordRaw[] = [];
+  moduleRoutes: RouteRecordRaw[] = [],
+  adminModuleRoutes: RouteRecordRaw[] = [];
 
 Object.keys(allModules).forEach(key => {
   const mod = allModules[key].default || {},
     modList = Array.isArray(mod) ? [...mod] : [mod];
 
+  if (key.indexOf('portalCommon') === -1) {
+    adminModuleRoutes.push(...modList);
+  }
   moduleRoutes.push(...modList);
 });
 
 export const whiteRoutes = sortRoutes(moduleRoutes);
+export const adminwhiteRoutes = sortRoutes(adminModuleRoutes);
 export const whiteName = flattenTree(whiteRoutes, item => item.name);

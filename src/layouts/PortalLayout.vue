@@ -8,7 +8,7 @@ import { portalLayoutToken } from './const';
 
 import RouteView from './components/common/RouteView.vue';
 import Footer from './components/common/Footer.vue';
-import PortalHeader from './components/protal/PortalHeader.vue';
+import PortalHeader from './components/portal/PortalHeader.vue';
 
 useResponsive(true);
 const appStore = useAppStore();
@@ -32,7 +32,7 @@ provide<PortalLayoutProvide>(portalLayoutToken, {
       <a-layout-content class="content-wrapper">
         <route-view />
       </a-layout-content>
-      <Footer :systemTitle="appStore.protalTitle" />
+      <Footer :systemTitle="appStore.portalTitle" />
     </a-layout>
   </a-layout>
 </template>
@@ -42,8 +42,8 @@ provide<PortalLayoutProvide>(portalLayoutToken, {
   height: 100vh;
 
   .layout-content {
-    margin-top: @protal-header-height;
-    padding-top: 16px;
+    margin-top: @portal-header-height;
+    padding-top: @layout-space;
     overflow: auto;
   }
 

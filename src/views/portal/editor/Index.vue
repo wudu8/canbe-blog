@@ -25,11 +25,11 @@ let initContent = '';
 
 const headerTip = computed(() => {
   if (saveingBackup.value === undefined) {
-    return t('protal.editor.header.auto_save_backup');
+    return t('portal.editor.header.auto_save_backup');
   } else {
     return saveingBackup.value
-      ? t('protal.editor.header.auto_saveing')
-      : t('protal.editor.header.auto_saved');
+      ? t('portal.editor.header.auto_saveing')
+      : t('portal.editor.header.auto_saved');
   }
 });
 
@@ -75,7 +75,7 @@ onMounted(() => {
         :is-md="isMdMode"
         v-model:title="articleTitle"
         :tip="headerTip"
-        :placeholder="$t('protal.editor.header.placeholder')"
+        :placeholder="$t('portal.editor.header.placeholder')"
         class="editor-header-flex"
         @switch="handleSwitch"
         @publish="handlePublish"

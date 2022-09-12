@@ -6,8 +6,8 @@ import { useRouter, useRoute } from 'vue-router';
 import { isString } from 'lodash-es';
 import { useAppStore } from '@/store';
 import { useClasses, useMenuTree } from '@/hooks';
-import { protalMenus } from '@/router/routes';
-import { protalHeaderPathEnum } from '@/router/path';
+import { portalNavMenus } from '@/router/routes';
+import { portalHeaderPathEnum } from '@/router/path';
 import { filterAndFlattenTrees } from '@/utils/treeUtils';
 
 const appStore = useAppStore();
@@ -15,10 +15,10 @@ const classes = useClasses('header-menu');
 const router = useRouter();
 const currentRoute = useRoute();
 
-const { menuTree } = useMenuTree(computed(() => protalMenus));
+const { menuTree } = useMenuTree(computed(() => portalNavMenus));
 
 const topMenus = computed(() => {
-  const paths = Object.values(protalHeaderPathEnum);
+  const paths = Object.values(portalHeaderPathEnum);
   return filterAndFlattenTrees(menuTree.value, item => paths.includes(item.path));
 });
 
@@ -65,8 +65,8 @@ const handleSelect = (value: VKey) => {
 
 <style lang="less" scoped>
 .@{app-prefix}-header-menu-wrapper{
-  height: @protal-header-height;
-  line-height: @protal-header-height;
+  height: @portal-header-height;
+  line-height: @portal-header-height;
   width: 100%;
 
   .@{app-prefix}-header-menu {
@@ -126,7 +126,7 @@ const handleSelect = (value: VKey) => {
 <style lang="less">
 .menu-dropdown-popup {
   left: 0 !important;
-  top: @protal-header-height !important;
+  top: @portal-header-height !important;
 
   .arco-dropdown {
     .arco-dropdown-list-wrapper {

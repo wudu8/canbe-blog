@@ -29,18 +29,18 @@ onMounted(() => {
       <SiderCard
         :dataSource="dataSource"
         :loading="loading"
-        :title="$t('protal.home.card.title')"
+        :title="$t('portal.home.card.title')"
         class="sds"
       />
       <SiderCard
         :dataSource="dataSource"
         :loading="loading"
-        :title="$t('protal.home.card.title')"
+        :title="$t('portal.home.card.title')"
       />
       <SiderCard
         :dataSource="dataSource"
         :loading="loading"
-        :title="$t('protal.home.card.title')"
+        :title="$t('portal.home.card.title')"
       />
     </a-space>
   </div>

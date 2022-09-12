@@ -14,6 +14,10 @@ export const bMenuProps = {
   defaultOpenKeys: {
     type: Array as PropType<string[]>,
     default: () => []
+  },
+  mode: {
+    type: String,
+    default: 'vertical'
   }
 };
 

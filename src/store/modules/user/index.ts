@@ -11,6 +11,7 @@ const useUserStore = defineStore('user', {
   state: (): LoginState => ({
     token: undefined,
     userInfo: {
+      id: undefined,
       name: undefined,
       avatar: undefined,
       job: undefined,

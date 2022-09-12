@@ -23,7 +23,7 @@ const [titleValue, setTitle] = useControlledPropByEmit(props, 'title', '');
 const appStore = useAppStore();
 
 const switchTip = computed(() =>
-  props.isMd ? t('protal.editor.header.switch.rich') : t('protal.editor.header.switch.md')
+  props.isMd ? t('portal.editor.header.switch.rich') : t('portal.editor.header.switch.md')
 );
 
 const handleChange = (value: string) => {
@@ -61,10 +61,10 @@ const comfirmSwitch = () => {
     <div class="right-suffix">
       <div v-if="props.tip && !appStore.isMobile" class="tip-text">{{ props.tip }}</div>
       <a-button type="outline" class="windi-ml-2 windi-mr-2" @click="handleDrafts">{{
-        $t('protal.drafts.title')
+        $t('portal.drafts.title')
       }}</a-button>
       <a-button type="primary" class="windi-ml-2 windi-mr-2" @click="handlePublish">{{
-        $t('protal.editor.header.publish')
+        $t('portal.editor.header.publish')
       }}</a-button>
       <b-tooltip :content="switchTip" position="br">
         <a-button type="text" status="normal" @click="handleSwitch">
@@ -76,7 +76,7 @@ const comfirmSwitch = () => {
       <template #title>
         {{ switchTip }}
       </template>
-      <div>{{ $t('protal.editor.header.switch.warning') }}</div>
+      <div>{{ $t('portal.editor.header.switch.warning') }}</div>
     </a-modal>
   </div>
 </template>

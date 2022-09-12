@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
         path: pathEnum.editArticle,
         name: 'edit_article',
         meta: {
-          title: t('protal.edit_article.title'),
+          title: t('portal.edit_article.title'),
           sort: 1
         },
         component: () => import('@/views/portal/editor/Index.vue')
