@@ -19,7 +19,7 @@ const routes: Array<RouteRecordRaw> = [
           title: t('portal.creator_home.title'),
           sort: 1
         },
-        component: () => import('@/views/portal/home/Index.vue')
+        component: () => import('@/views/portal/creator/statistics/Index.vue')
       },
       {
         path: '/creator_content',
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
               title: t('portal.creator_article.title'),
               sort: 1
             },
-            component: () => import('@/views/portal/home/Index.vue')
+            component: () => import('@/views/portal/creator/article/Index.vue')
           },
           {
             path: pathEnum.drafts,
@@ -46,7 +46,7 @@ const routes: Array<RouteRecordRaw> = [
               title: t('portal.drafts.title'),
               sort: 2
             },
-            component: () => import('@/views/portal/home/Index.vue')
+            component: () => import('@/views/portal/creator/drafts/Index.vue')
           },
           {
             path: pathEnum.creatorColumn,
@@ -55,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
               title: t('portal.creator_column.title'),
               sort: 3
             },
-            component: () => import('@/views/portal/home/Index.vue')
+            component: () => import('@/views/portal/creator/column/Index.vue')
           }
         ]
       }

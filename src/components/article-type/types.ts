@@ -3,7 +3,8 @@ import type { ExtractInnerPropTypes, ExtractPublicPropTypes } from '@/utils/prop
 import { PropType } from 'vue';
 
 export interface SiderCardData {
-  id: CKey;
+  /** 文章类型唯一key */
+  id: string;
   name: string;
   num: number;
 }

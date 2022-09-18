@@ -11,7 +11,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: t('portal.home_page.title'),
       browserTitle: t('portal.home.title'),
-      showSystemTitle: true,
       sort: 1
     },
     component: PortalLayout,

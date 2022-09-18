@@ -26,6 +26,7 @@ const classes = useClasses('actions-item');
   display: inline-block;
   color: @sub-text-color;
   cursor: pointer;
+  user-select: none;
 
   .item-icon {
     font-size: 16px;

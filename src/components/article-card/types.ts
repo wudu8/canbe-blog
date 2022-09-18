@@ -7,19 +7,28 @@ export interface TitleTag {
   label: string;
 }
 
-export interface ArticleListData {
-  id: CKey;
-  title: string;
-  articlePath: string;
+export interface ArticleDataSource {
+  /** 文章唯一key */
+  id: string;
+  /** 文章标题 */
+  blogTitle: string;
+  /** 文章摘要 */
   description: string;
   thumb: string;
-  tags: string[];
-  dateTime: string;
-  author: string;
-
-  viewNum: number;
-  likeNum: number;
+  /** 文章标签 */
+  blogTags: string[];
+  /** 发布时间 */
+  publishTime: string;
+  /** 作者 */
+  blogAuthor: string;
+  /** 阅读数 */
+  readingNum: number;
+  /** 点赞数 */
+  favourNum: number;
+  /** 评论数 */
   commentNum: number;
+  /** 收藏数 */
+  storeNum: number;
 
   beforeTag?: TitleTag;
   afterTag?: TitleTag;
@@ -28,11 +37,27 @@ export interface ArticleListData {
 export const articleListProps = {
   virtualListProps: Object as PropType<VirtualListProps>,
   dataSource: {
-    type: Array as PropType<ArticleListData[]>,
+    type: Array as PropType<ArticleDataSource[]>,
     require: true,
     default: () => []
   },
   loading: {
+    type: Boolean,
+    default: false
+  },
+  hiddenExtra: {
+    type: Boolean,
+    default: false
+  },
+  hiddenInfo: {
+    type: Boolean,
+    default: false
+  },
+  hiddenStoreNum: {
+    type: Boolean,
+    default: true
+  },
+  disabledFavour: {
     type: Boolean,
     default: false
   }

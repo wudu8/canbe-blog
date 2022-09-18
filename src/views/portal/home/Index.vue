@@ -1,18 +1,25 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
 
 import SiderBar from './components/SiderBar.vue';
-import ArticleList from './components/ArticleList.vue';
+import ArticleList from '@/views/business/ArticleList.vue';
+
+const listRef = ref<InstanceType<typeof ArticleList>>();
 
 const classes = useClasses('home');
 const appStore = useAppStore();
+
+onMounted(() => {
+  listRef.value?.loadData();
+});
 </script>
 
 <template>
   <div :class="classes">
     <div :class="`${classes}-list-container`">
-      <ArticleList />
+      <ArticleList ref="listRef" />
     </div>
     <SiderBar v-if="!appStore.isMobile" :class="`${classes}-siderbar`" />
   </div>

@@ -7,8 +7,8 @@ declare module 'vue-router' {
     /** 浏览器title，如果不配置，将默认使用title属性 */
     browserTitle?: string;
 
-    /** 当前路由是否在浏览器标签栏上显示系统名称 */
-    showSystemTitle?: boolean;
+    /** 当前路由是否在浏览器标签栏上隐藏系统名称 */
+    hiddenSystemTitle?: boolean;
 
     icon?: string;
 

@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 // import { useAppStore } from '@/store';
 import { useClasses, useMenuTree } from '@/hooks';
-import { creatorMenus } from '@/router/routes';
+import { creatorMenus } from '@/router/appMenus';
 import { forEachTree } from '@/utils/treeUtils';
 import { isEmpty } from 'lodash-es';
 

@@ -1,27 +1,39 @@
+import type { requestParams } from '../utils';
+
 import mockjs from 'mockjs';
 import { MockMethod } from 'vite-plugin-mock';
 import { resultSuccess } from '../utils';
 
 export default [
   {
-    url: '/api/article/list',
+    url: '/api/blog/blogInfo',
     method: 'get',
     timeout: 500,
-    response: () => {
+    response: (request: requestParams) => {
+      const { blogStatus = '1' } = request.body;
       return resultSuccess(
         mockjs.mock({
           'array|10-12': [
             {
               id: '@guid',
-              title: '@cword(20)',
-              articlePath: '@url()',
-              description: '@paragraph',
-              viewNum: '@integer(60, 10000)',
-              likeNum: '@integer(60, 10000)',
+              blogTitle: '@ctitle(20)',
+              description: '@cparagraph',
+              readingNum: '@integer(60, 10000)',
+              favourNum: '@integer(60, 10000)',
               commentNum: '@integer(60, 10000)',
-              author: '@cname',
-              dateTime: '@date',
-              tags: ['前端', 'js']
+              storeNum: '@integer(60, 10000)',
+              blogAuthor: '@cname',
+              blogCategory: '@cword(5)',
+              blogContent: '@cparagraph',
+              'blogEditType|1': ['1', '2'],
+              blogStatus: blogStatus,
+              blogTags: ['前端', 'js'],
+              publishTime: '@datetime',
+              createBy: '@cname',
+              createTime: '@datetime',
+              delFlag: '0',
+              updateBy: '@cname',
+              updateTime: '@datetime'
             }
           ]
         }).array
@@ -29,7 +41,7 @@ export default [
     }
   },
   {
-    url: '/api/article/type',
+    url: '/api/system/sysDictItem/hotCategory',
     method: 'get',
     timeout: 500,
     response: resultSuccess([
@@ -51,14 +63,33 @@ export default [
     ])
   },
   {
-    url: '/api/article/get_article',
+    url: '/api/blog/blogInfo/:id',
     method: 'get',
     response: resultSuccess({
-      id: '@character(10)',
-      title: '@ctitle(10)',
-      content:
-        '<p><img src="https://picsum.photos/302" alt="图片" data-href="https://picsum.photos/300/2" style=""/><img src="https://picsum.photos/303" alt="图片" data-href="https://picsum.photos/300/2" style=""/></p>',
-      mode: 'rich'
+      id: '@guid',
+      blogTitle: '@ctitle(20)',
+      description: '@cparagraph',
+      readingNum: '@integer(60, 10000)',
+      favourNum: '@integer(60, 10000)',
+      commentNum: '@integer(60, 10000)',
+      storeNum: '@integer(60, 10000)',
+      blogAuthor: '@cname',
+      blogCategory: '@cword(5)',
+      blogContent: '@cparagraph',
+      'blogEditType|1': ['1', '2'],
+      blogStatus: '1',
+      blogTags: ['前端', 'js'],
+      publishTime: '@datetime',
+      createBy: '@cname',
+      createTime: '@datetime',
+      delFlag: '0',
+      updateBy: '@cname',
+      updateTime: '@datetime'
     })
+  },
+  {
+    url: '/api/blog/blogInfo/:id/incrFavourNum',
+    method: 'patch',
+    response: resultSuccess(true)
   }
 ] as MockMethod[];

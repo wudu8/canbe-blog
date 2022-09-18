@@ -1,21 +1,31 @@
 export type RoleType = '' | '*' | 'admin' | 'user';
+
+/** 性别类型 */
+export enum SexType {
+  default = '0',
+  man = '1',
+  woman = '2'
+}
+
 export interface UserState {
+  /** 用户id */
   id?: string;
-  name?: string;
+  /** 用户名称 */
+  realname?: string;
+  /** 头像 */
   avatar?: string;
-  job?: string;
-  organization?: string;
-  location?: string;
+  /** 生日 */
+  birthday?: string;
+  /** 邮箱 */
   email?: string;
-  introduction?: string;
-  personalWebsite?: string;
-  jobName?: string;
-  organizationName?: string;
-  locationName?: string;
+  /** 性别 */
+  sex?: SexType;
+  /** 第三方登录的唯一标识 */
+  thirdId?: string;
+  /** 第三方类型 */
+  thirdType?: string;
+  /** 联系电话 */
   phone?: string;
-  registrationDate?: string;
-  accountId?: string;
-  certification?: number;
   role: RoleType;
 }
 export interface LoginState {

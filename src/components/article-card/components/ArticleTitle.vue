@@ -2,10 +2,10 @@
 import { computed, ref } from 'vue';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
-import { ArticleListData } from '../types';
+import { ArticleDataSource } from '../types';
 
 interface Props {
-  item: ArticleListData;
+  item: ArticleDataSource;
   showTag?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -15,8 +15,8 @@ const itemPushRef = ref<HTMLElement>();
 const classes = useClasses('item-title');
 const appStore = useAppStore();
 
-const title = computed(() => props.item.title);
-const articlePath = computed(() => props.item.articlePath);
+const title = computed(() => props.item.blogTitle);
+const articlePath = computed(() => '/article/details/' + props.item.id);
 const beforeTag = computed(() => props.item.beforeTag);
 const afterTag = computed(() => props.item.afterTag);
 
@@ -31,7 +31,7 @@ defineExpose({
 
 <template>
   <div :class="{ [classes]: true, 'mobile-title': appStore.isMobile }">
-    <a ref="itemPushRef" :href="`/${articlePath}`" target="_blank" :class="`${classes}-href`">
+    <a ref="itemPushRef" :href="`${articlePath}`" target="_blank" :class="`${classes}-href`">
       <a-tag v-if="beforeTag && showTag" :color="beforeTag.color" size="small" class="before-tag">
         {{ beforeTag.label }} </a-tag
       >v
@@ -54,7 +54,7 @@ defineExpose({
   &-href {
     display: flex;
     align-items: center;
-    margin: 10px 0;
+    margin-bottom: 10px;
     font-size: 16px;
     color: @title-text-color;
 

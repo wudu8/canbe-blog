@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: pathEnum.login,
-        name: 'Login',
+        name: 'login',
         meta: {
           title: t('route.login.title'),
           sort: 1

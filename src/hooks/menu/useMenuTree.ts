@@ -1,11 +1,12 @@
 import type { RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
 import type { ComputedRef } from 'vue';
+import type { AppMenu } from '@/router/appMenus';
 
 import { computed } from 'vue';
 import { isEmpty } from 'lodash-es';
 import { usePermission } from './permission';
 
-export function useMenuTree(appRouteRef: ComputedRef<(RouteRecordNormalized | RouteRecordRaw)[]>) {
+export function useMenuTree(appRouteRef: ComputedRef<AppMenu[]>) {
   const permission = usePermission();
   const menuTree = computed(() => {
     const copyRouter = JSON.parse(JSON.stringify(appRouteRef.value));

@@ -12,21 +12,16 @@ const useUserStore = defineStore('user', {
     token: undefined,
     userInfo: {
       id: undefined,
-      name: undefined,
+      realname: undefined,
       avatar: undefined,
-      job: undefined,
-      organization: undefined,
-      location: undefined,
       email: undefined,
-      introduction: undefined,
-      personalWebsite: undefined,
-      jobName: undefined,
-      organizationName: undefined,
-      locationName: undefined,
       phone: undefined,
-      registrationDate: undefined,
-      accountId: undefined,
-      certification: undefined,
+      /** 性别 */
+      sex: undefined,
+      /** 第三方登录的唯一标识 */
+      thirdId: undefined,
+      /** 第三方类型 */
+      thirdType: undefined,
       role: ''
     }
   }),

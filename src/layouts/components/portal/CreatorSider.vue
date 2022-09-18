@@ -31,19 +31,16 @@ const gotoPath = (path: VKey) => {
             class="sider-user-avater"
             @click="gotoPath(`${pathEnum.userhomepage}/${userStore.userInfo.id}`)"
           />
-          <div class="sider-user-name">{{ userStore.userInfo.name }}</div>
+          <div class="sider-user-name">{{ userStore.userInfo.realname }}</div>
         </div>
-        <a-button
-          class="edit-article-btn"
-          type="primary"
-          long
-          @click="gotoPath(pathEnum.editArticle)"
-        >
-          <template #icon>
-            <icon-edit />
-          </template>
-          {{ $t('portal.header.right.write_article') }}
-        </a-button>
+        <div class="edit-article-btn">
+          <a-button type="primary" long @click="gotoPath(pathEnum.editArticle)">
+            <template #icon>
+              <icon-edit />
+            </template>
+            {{ $t('portal.header.right.write_article') }}
+          </a-button>
+        </div>
         <creator-menu :mode="mode" class="content-left-menu" />
       </div>
     </div>
@@ -78,7 +75,6 @@ const gotoPath = (path: VKey) => {
     height: 100%;
 
     .sider-header {
-      padding: 0 8px;
       padding-bottom: 24px;
 
       .sider-user-avater {
@@ -92,7 +88,7 @@ const gotoPath = (path: VKey) => {
       }
 
       .edit-article-btn {
-        margin-top: 24px;
+        padding: 24px 8px;
       }
     }
 

@@ -76,10 +76,10 @@ export default function configStyleImportPlugin() {
           }
           // eslint-disable-next-line no-prototype-builtins
           return replaceList.hasOwnProperty(name)
-            ? `@arco-design/web-vue/es/${replaceList[name]}/style/css.js`
-            : `@arco-design/web-vue/es/${name}/style/css.js`;
-          // less
-          // return `@arco-design/web-vue/es/${name}/style/index.js`;
+            ? `@arco-design/web-vue/es/${replaceList[name]}/style/index.js`
+            : `@arco-design/web-vue/es/${name}/style/index.js`;
+          // css
+          // return `@arco-design/web-vue/es/${name}/style/css.js`;
         }
       }
     ]

@@ -2,7 +2,7 @@ import type { Router } from 'vue-router';
 
 import NProgress from 'nprogress'; // progress bar
 import { setRouteEmitter } from '@/utils/route-listener';
-// import setupUserLoginInfoGuard from './userLoginInfo';
+import setupUserLoginInfoGuard from './userLoginInfo';
 import setupPermissionGuard from './permission';
 
 function setupPageGuard(router: Router) {
@@ -14,7 +14,7 @@ function setupPageGuard(router: Router) {
   router.afterEach(guard => {
     let title = guard?.meta?.browserTitle ? guard.meta.browserTitle : guard?.meta?.title;
     if (title) {
-      if (guard?.meta?.showSystemTitle && window?.systemOptions?.title) {
+      if (!guard?.meta?.hiddenSystemTitle && window?.systemOptions?.title) {
         title = `${window.systemOptions.title} - ${title}`;
       }
     } else {
@@ -41,7 +41,7 @@ export default function createRouterGuards(router: Router) {
   setupPageGuard(router);
 
   // 路由跳转逻辑处理
-  // setupUserLoginInfoGuard(router);
+  setupUserLoginInfoGuard(router);
   setupPermissionGuard(router);
 
   // 路由结束处理

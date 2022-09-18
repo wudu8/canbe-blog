@@ -13,14 +13,14 @@ const classes = useClasses('login-container');
 
 <template>
   <div :class="{ [classes]: true, 'mobile-login-wrapper': appStore.isMobile }">
-    <Logo :systemTitle="appStore.protalTitle" class="logo" />
+    <Logo :systemTitle="appStore.portalTitle" class="logo" />
     <LoginBanner />
     <div class="content">
       <div class="content-inner">
         <LoginForm :dark-theme="appStore.isMobile" />
       </div>
       <div class="footer">
-        <Footer :systemTitle="appStore.protalTitle" />
+        <Footer :systemTitle="appStore.portalTitle" />
       </div>
     </div>
   </div>

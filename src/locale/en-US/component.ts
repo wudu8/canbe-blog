@@ -2,6 +2,7 @@ export default {
   'component.article.action.view': '阅读数',
   'component.article.action.like': '点赞数',
   'component.article.action.comment': '评论数',
+  'component.article.action.store': '收藏数',
   'portal.editor.header.placeholder': '输入文章标题...',
   'portal.editor.header.publish': '发布文章',
   'portal.editor.header.auto_save_backup': '文章将自动保存至草稿箱',

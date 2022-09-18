@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import type { ArticleData } from '@/apis/article/types';
+
 import { computed, ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { t } from '@/locale';
 import { getDeletedImage } from '@/components/editor/utils';
-import { getArticleById, ArticleMode } from '@/apis/article';
+import { getArticle, updateArticle, insertArticle, ArticleMode } from '@/apis/article';
 
 import RichEditor from '@/components/editor/rich/RichEditor.vue';
 import MdEditor from '@/components/editor/md/MdEditor.vue';
@@ -36,29 +38,45 @@ const headerTip = computed(() => {
 const handleSwitch = (isMd: boolean) => {
   isMdMode.value = isMd;
 };
+
+const saveData = (contetnt: string) => {
+  const data = {
+    blogContent: contetnt
+  } as ArticleData;
+  if (currentArticleId.value) {
+    return updateArticle(data);
+  } else {
+    return insertArticle(data);
+  }
+};
+
 const handlePublish = () => {
   const contetnt = isMdMode.value ? mdContent.value : richContent.value;
   const deletedImages = getDeletedImage(contetnt, initContent, isMdMode.value);
   console.log('deletedImages: ', deletedImages);
+  saveData(contetnt).then(_res => {
+    // if (res.success) {
+    // }
+  });
 };
 const handleDrafts = () => {};
 
 onMounted(() => {
   const articleId = currentRouter.query.articleId as string;
   if (articleId) {
-    currentArticleId.value = articleId;
-    getArticleById(articleId).then(res => {
+    getArticle(articleId).then(res => {
       if (res.success) {
         const article = res.result;
-        articleTitle.value = article.title;
-        if (article.mode === ArticleMode.md) {
+        currentArticleId.value = article.id;
+        articleTitle.value = article.blogTitle;
+        if (article.blogEditType === ArticleMode.md) {
           isMdMode.value = true;
-          mdContent.value = article.content;
+          mdContent.value = article.blogContent;
         } else {
           isMdMode.value = false;
-          richContent.value = article.content;
+          richContent.value = article.blogContent;
         }
-        initContent = article.content;
+        initContent = article.blogContent;
       }
       loading.value = false;
     });

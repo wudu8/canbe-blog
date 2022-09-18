@@ -47,6 +47,38 @@ export interface OrderTreeOptions extends TreeOptions {
 }
 
 /**
+ * 遍历tree数组并返回处理后新树形结构
+ * @param tree 要遍历的树形结构
+ * @param handleFn 节点处理函数
+ * @param options 配置对象
+ * @returns 扁平化的数组
+ */
+export function mapTree<T extends BaseTree, Result extends BaseTree>(
+  tree: T[],
+  handleFn: (item: T, index: number, arr: T[]) => Result,
+  options?: OrderTreeOptions
+) {
+  const mergeOptions = merge(defaultOpions, options);
+  const traversal = (
+    tree: T[],
+    handleFn: (item: T, index: number, arr: T[]) => Result,
+    options: Required<OrderTreeOptions>
+  ) => {
+    return tree.map((item, index, arr) => {
+      if (isArray(item[options.children])) {
+        (item as Indexable)[options.children] = traversal(
+          item[options.children],
+          handleFn,
+          options
+        );
+      }
+      return handleFn(item, index, arr);
+    });
+  };
+  return traversal(cloneDeep(tree), handleFn, mergeOptions);
+}
+
+/**
  * 遍历tree数组
  * @param tree 要遍历的树形结构
  * @param handleFn 节点处理函数
@@ -76,7 +108,7 @@ export function forEachTree<T extends BaseTree>(
       );
     });
   };
-  traversal(cloneDeep(tree), handleFn, mergeOptions);
+  traversal(tree, handleFn, mergeOptions);
 }
 
 /**

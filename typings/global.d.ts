@@ -57,4 +57,24 @@ declare global {
     message: string;
     success: boolean;
   };
+
+  enum DelFlagStatus {
+    /** 正常 */
+    normal = '0',
+    /** 已删除 */
+    deleted = '1'
+  }
+
+  interface CommonField {
+    /** 创建人 */
+    createBy: string;
+    /** 创建时间 */
+    createTime: string;
+    /** 删除标记 */
+    delFlag: DelFlagStatus;
+    /** 更新人 */
+    updateBy: string;
+    /** 更新时间 */
+    updateTime: string;
+  }
 }

@@ -1,20 +1,24 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import type { ArticleDataSource } from '../types';
+import type { ArticleListContext } from '../token';
+
+import { ref, inject } from 'vue';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
-import { ArticleListData } from '../types';
+import { ArticleListToken } from '../token';
 
 import ViewAction from './ViewAction.vue';
 import ArticleInfo from './ArticleInfo.vue';
 import ArticleTitle from './ArticleTitle.vue';
 
 interface Props {
-  item: ArticleListData;
+  item: ArticleDataSource;
 }
 const props = withDefaults(defineProps<Props>(), {});
 
 const ArticleTitleRef = ref<InstanceType<typeof ArticleTitle>>();
 const appStore = useAppStore();
+const { hiddenExtra, hiddenInfo } = inject<ArticleListContext>(ArticleListToken) ?? {};
 
 const handleClick = () => {
   ArticleTitleRef.value?.click();
@@ -27,7 +31,9 @@ const classes = useClasses('article-list-item');
     <a-list-item-meta>
       <template #title>
         <div :class="{ [`${classes}-title`]: true, reverse: appStore.isMobile }">
-          <ArticleInfo :item="props.item" />
+          <template v-if="!hiddenInfo">
+            <ArticleInfo :item="props.item" />
+          </template>
           <ArticleTitle ref="ArticleTitleRef" :item="props.item" />
         </div>
       </template>
@@ -35,15 +41,14 @@ const classes = useClasses('article-list-item');
         <div :class="[`${classes}-description`, 'single-row-ellipsis']">
           {{ props.item.description }}
         </div>
-        <ViewAction
-          :viewLabel="props.item.viewNum"
-          :likeLabel="props.item.likeNum"
-          :commentLabel="props.item.commentNum"
-        />
+        <ViewAction :item="props.item" />
       </template>
     </a-list-item-meta>
-    <template #extra v-if="props.item.thumb">
+    <template #extra v-if="props.item.thumb && !hiddenExtra">
       <img :class="`${classes}-img`" :src="props.item.thumb" />
+    </template>
+    <template #actions v-if="$slots.actions">
+      <slot name="actions"></slot>
     </template>
   </a-list-item>
 </template>

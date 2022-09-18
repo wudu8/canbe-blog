@@ -6,7 +6,7 @@ import { useRouter, useRoute } from 'vue-router';
 import { isString } from 'lodash-es';
 import { useAppStore } from '@/store';
 import { useClasses, useMenuTree } from '@/hooks';
-import { portalNavMenus } from '@/router/routes';
+import { portalNavMenus } from '@/router/appMenus';
 import { portalHeaderPathEnum } from '@/router/path';
 import { filterAndFlattenTrees } from '@/utils/treeUtils';
 

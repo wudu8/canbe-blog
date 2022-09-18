@@ -1,21 +1,19 @@
 import type { Router } from 'vue-router';
 
-import { whiteName } from './whiteRoutesList';
+import { usePermission } from '@/hooks';
 
 export default function (router: Router): void {
   router.beforeEach((to, _, next) => {
-    // white list
-    if (to.name && whiteName.includes(to.name)) {
-      next();
+    if (!router.hasRoute(to.name || '')) {
+      router.push('/exception/not_found');
       return;
-    } else {
-      if (!router.hasRoute(to.name || '')) {
-        router.push('/exception/not_found');
-        return;
-      }
-      // 权限控制
+    }
+    // 权限控制
+    const Permission = usePermission();
+    const permissionsAllow = Permission.accessRouter(to);
+    if (permissionsAllow) next();
+    else {
       next();
-      return;
     }
   });
 }
