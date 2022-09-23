@@ -47,7 +47,7 @@ defineExpose({
 
 <style lang="less" scope>
 .@{app-prefix}-item-title {
-  &.mobile-title .canbe-item-title-href {
+  &.mobile-title &-href {
     font-size: 14px;
   }
 

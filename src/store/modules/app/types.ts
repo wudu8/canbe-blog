@@ -5,6 +5,7 @@ export interface AppState {
   device: DeviceType;
   serverMenu: RouteRecordNormalized[];
   logo: string;
+  logoTitle: string;
   year: string;
   portalTitle: string;
   adminTitle: string;

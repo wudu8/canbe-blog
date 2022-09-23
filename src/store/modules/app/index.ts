@@ -9,7 +9,8 @@ const useAppStore = defineStore('app', {
   state: (): AppState => ({
     device: DeviceType.desktop,
     serverMenu: [],
-    logo: import.meta.env.VITE_APP_LOGO,
+    logo: '/logo.png',
+    logoTitle: '/logo_word.png',
     year: import.meta.env.VITE_APP_YEAR,
     portalTitle: import.meta.env.VITE_APP_FRONT_TITLE,
     adminTitle: import.meta.env.VITE_APP_ADMIN_TITLE,

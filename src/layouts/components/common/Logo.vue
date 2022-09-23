@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<LogoProps>(), {
 const router = useRouter();
 const appStore = useAppStore();
 const logoClasses = useClasses('logo');
-const titleClasses = useClasses('title');
+// const titleClasses = useClasses('title');
 
 const handleLogoClick = () => {
   router.push(pathEnum.home);
@@ -23,10 +23,14 @@ const handleLogoClick = () => {
 </script>
 <template>
   <div class="logo-wrapper" @click="handleLogoClick">
-    <img :src="appStore.logo" alt="logo" :class="logoClasses" />
-    <span v-if="showTitle" :class="titleClasses">
+    <img
+      :src="props.showTitle ? appStore.logoTitle : appStore.logo"
+      alt="logo"
+      :class="logoClasses"
+    />
+    <!-- <span v-if="showTitle" :class="titleClasses">
       {{ props.systemTitle }}
-    </span>
+    </span> -->
   </div>
 </template>
 

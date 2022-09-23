@@ -1,6 +1,6 @@
-# canbe-blog
+# wecan-blog
 
-`canbe-blog` 是一套崇尚自由的博客平台。  
+`wecan-blog` 是一套崇尚自由的博客平台。  
 基于 Vue 3.x + TypeScript 开发, 全部代码开源并遵循 MIT 协议，任何企业、组织及个人均可免费使用。
 
 [![Build Status](https://dev.azure.com/iduxfeteam/IDuxFE/_apis/build/status/IDuxFE.idux?branchName=azure-pipelines)](https://dev.azure.com/iduxfeteam/IDuxFE/_build/latest?definitionId=1&branchName=azure-pipelines)
