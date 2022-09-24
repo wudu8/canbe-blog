@@ -13,8 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
       <a-list-item v-for="num in props.emptyNum" :key="num">
         <a-skeleton :animation="true">
           <a-space direction="vertical" :style="{ width: '100%' }" size="large">
-            <a-skeleton-shape />
-            <a-skeleton-line :rows="3" />
+            <a-skeleton-line :rows="4" :widths="['50%', '100%', '80%', '70%']" />
           </a-space>
         </a-skeleton>
       </a-list-item>

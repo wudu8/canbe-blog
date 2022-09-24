@@ -9,8 +9,7 @@ export default [
       token: '@string(64)',
       userInfo: {
         id: '@guid',
-        realname: '@name(10)',
-        avatar: '/sdsdas',
+        realname: '@cname(2)',
         email: '@email()',
         phone: '@string(64)',
         'sex|1': ['1', '2'],
@@ -27,8 +26,7 @@ export default [
       token: '@string(64)',
       userInfo: {
         id: '@guid',
-        realname: '@name(10)',
-        avatar: '/sdsdas',
+        realname: '@cname(2)',
         email: '@email()',
         phone: '@string(64)',
         'sex|1': ['1', '2'],

@@ -36,8 +36,8 @@ provide<CreatorLayoutProvide>(creatorLayoutToken, {
         :class="[`${creatorClasses}-sider`]"
       />
     </PortalHeader>
-    <a-layout ref="scrollEl" class="layout-content">
-      <a-layout-content class="content-wrapper">
+    <a-layout ref="scrollEl" class="main-content">
+      <a-layout-content class="view-wrapper">
         <div :class="[creatorClasses, contentClasses, { mobile: appStore.isMobile }]">
           <creator-sider v-if="!appStore.isMobile" :class="[`${creatorClasses}-sider`]" />
           <div :class="[`${creatorClasses}-content`]">
@@ -84,14 +84,14 @@ provide<CreatorLayoutProvide>(creatorLayoutToken, {
 .@{app-prefix}-blog-layout{
   height: 100vh;
 
-  .layout-content {
+  .main-content {
     margin-top: @portal-header-height;
     padding-top: @layout-space;
     overflow: auto;
   }
 
   &.mobile {
-    .content-wrapper {
+    .view-wrapper {
       width: 100%;
       background: #fff;
     }

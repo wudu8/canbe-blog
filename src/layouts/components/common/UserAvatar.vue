@@ -7,16 +7,19 @@ const userStore = useUserStore();
 <template>
   <a-avatar
     :auto-fix-font-size="false"
-    :class="[{ 'avatar-hover': !userStore.isLogin }, 'user-avatar-wrap']"
+    :class="[
+      {
+        'avatar-hover': !userStore.isLogin
+      },
+      'user-avatar-wrap'
+    ]"
   >
     <img
       v-if="userStore.isLogin && userStore.user.avatar"
       alt="avatar"
       :src="userStore.user.avatar"
     />
-    <template v-else-if="userStore.isLogin && userStore.user.name">
-      {{ userStore.user.name }}
-    </template>
+    <icon-user class="windi-text-size-[22px]" v-else-if="userStore.isLogin" />
     <template v-else>{{ $t('login.user_menu.go_login') }}</template>
   </a-avatar>
 </template>

@@ -41,7 +41,11 @@ export function getAllImagesPathByRich(content: string): DeleteImg[] {
  * @param oldContent 旧内容
  * @param md 内容类型是否为md
  */
-export function getDeletedImage(newContent: string, oldContent: string, md: boolean): DeleteImg[] {
+export function compareDeletedImage(
+  newContent: string,
+  oldContent: string,
+  md: boolean
+): DeleteImg[] {
   const getAddImages = md ? getAllImagesPathByMd : getAllImagesPathByRich;
   const newContentImgs = getAddImages(newContent);
   const oldContentImgs = getAddImages(oldContent);
@@ -52,4 +56,16 @@ export function getDeletedImage(newContent: string, oldContent: string, md: bool
     }
   });
   return deletedImgs;
+}
+
+/**
+ * 获取md内容中被删除的图片
+ * @param newContent 新内容
+ * @param oldContent 旧内容
+ * @param md 内容类型是否为md
+ */
+export function getAllImage(content: string, md: boolean): DeleteImg[] {
+  const getAddImages = md ? getAllImagesPathByMd : getAllImagesPathByRich;
+  const contentImgs = getAddImages(content);
+  return contentImgs;
 }

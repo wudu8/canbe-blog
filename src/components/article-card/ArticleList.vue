@@ -3,9 +3,10 @@ import type { ArticleDataSource } from './types';
 import type { ArticleListContext } from './token';
 
 import { defineComponent, provide } from 'vue';
+import { merge } from 'lodash-es';
 import { useClasses } from '@/hooks';
 
-import { articleListProps } from './types';
+import { articleListProps, defaultArticleItemConfig } from './types';
 import { ArticleListToken } from './token';
 
 import ArticleEmpty from './components/ArticleEmpty.vue';
@@ -30,10 +31,7 @@ export default defineComponent({
 
     provide<ArticleListContext>(ArticleListToken, {
       updateItem,
-      hiddenExtra: props.hiddenExtra,
-      hiddenInfo: props.hiddenInfo,
-      hiddenStoreNum: props.hiddenStoreNum,
-      disabledFavour: props.disabledFavour
+      itemConfig: merge({}, defaultArticleItemConfig, props.itemConfig)
     });
 
     return { defultEmptyNum, classes };

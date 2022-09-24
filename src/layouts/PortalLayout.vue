@@ -28,8 +28,8 @@ provide<PortalLayoutProvide>(portalLayoutToken, {
     :class="{ [appStore.device]: true, [layoutClasses]: true, [currentLocale]: true }"
   >
     <PortalHeader />
-    <a-layout ref="scrollEl" class="layout-content">
-      <a-layout-content class="content-wrapper">
+    <a-layout ref="scrollEl" class="main-content">
+      <a-layout-content class="view-wrapper">
         <route-view />
       </a-layout-content>
       <Footer :systemTitle="appStore.portalTitle" />
@@ -41,14 +41,14 @@ provide<PortalLayoutProvide>(portalLayoutToken, {
 .@{app-prefix}-blog-layout{
   height: 100vh;
 
-  .layout-content {
+  .main-content {
     margin-top: @portal-header-height;
     padding-top: @layout-space;
     overflow: auto;
   }
 
   &.mobile {
-    .content-wrapper {
+    .view-wrapper {
       width: 100%;
       background: #fff;
     }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ArticleData } from '@/apis/article/types';
+import type { ArticleItemConfig } from '@/components/article-card';
 
 import { ref, onMounted, reactive } from 'vue';
 import { useUserStore } from '@/store';
@@ -10,6 +11,15 @@ import ArticleList from '@/views/business/ArticleList.vue';
 
 const listRef = ref<InstanceType<typeof ArticleList>>();
 const params = reactive({} as ArticleData);
+const searchValue = ref<string>();
+const itemConfig = reactive<ArticleItemConfig>({
+  hiddenExtra: true,
+  hiddenInfo: true,
+  hiddenStoreNum: false,
+  hiddenActions: false,
+  hiddenActionTime: false,
+  disabledFavour: true
+});
 
 const userStore = useUserStore();
 const classes = useClasses('creator-article-list');
@@ -18,6 +28,11 @@ const loadData = () => {
   if (userStore.userInfo.id) {
     listRef.value?.loadData();
   }
+};
+
+const queryData = () => {
+  searchValue.value && (params.blogTitle = searchValue.value);
+  loadData();
 };
 
 onMounted(() => {
@@ -30,19 +45,18 @@ onMounted(() => {
   <div :class="classes">
     <div :class="`${classes}-search`">
       <a-input-search
+        v-model="searchValue"
         :style="{ width: '320px' }"
         :placeholder="$t('portal.creator.article_list.search')"
+        @press-enter="queryData"
+        @search="queryData"
       />
     </div>
     <ArticleList
       ref="listRef"
       :params="params"
       :layoutToken="creatorLayoutToken"
-      :hiddenExtra="true"
-      :hiddenInfo="true"
-      :hiddenStoreNum="false"
-      :hiddenActions="false"
-      :disabledFavour="true"
+      :itemConfig="itemConfig"
     />
   </div>
 </template>

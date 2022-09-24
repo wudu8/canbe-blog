@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ArticleData } from '@/apis/article/types';
+import type { ArticleItemConfig } from '@/components/article-card';
 
 import type { PortalLayoutProvide } from '@/layouts/const';
 
@@ -10,6 +11,8 @@ import { useClasses } from '@/hooks';
 import { getArticleList, deleteArticle } from '@/apis/article';
 import { useLayoutScroll } from '@/layouts/hooks/useScroll';
 import { portalLayoutToken } from '@/layouts/const';
+import { getAllImage } from '@/components/editor/utils';
+import { ArticleMode } from '@/apis/article';
 
 import ArticleList from '@/components/article-card';
 import Spin from '@/components/box-spin/Spin.vue';
@@ -17,27 +20,18 @@ import Spin from '@/components/box-spin/Spin.vue';
 interface Props {
   params?: ArticleData;
   layoutToken?: symbol;
-  /** 隐藏摘要图片 */
-  hiddenExtra?: boolean;
-  /** 隐藏顶部作者信息 */
-  hiddenInfo?: boolean;
-  /** 隐藏收藏数信息 */
-  hiddenStoreNum?: boolean;
-  /** 隐藏操作信息 */
-  hiddenActions?: boolean;
-  /** 禁用点赞 */
-  disabledFavour?: boolean;
+  itemConfig?: ArticleItemConfig;
 }
 const props = withDefaults(defineProps<Props>(), {
   params: () => {
     return {} as ArticleData;
   },
   layoutToken: portalLayoutToken,
-  hiddenExtra: false,
-  hiddenInfo: false,
-  hiddenStoreNum: true,
-  hiddenActions: true,
-  disabledFavour: false
+  itemConfig: () => {
+    return {
+      hiddenActions: true
+    };
+  }
 });
 
 const articleLoading = ref(false);
@@ -68,6 +62,10 @@ const handleupdateItem = (record: ArticleData) => {
 };
 
 const handleDelete = (record: ArticleData) => {
+  // 先删除图片
+  const deletedImages = getAllImage(record.contetnt, record.blogEditType === ArticleMode.md);
+  console.log('deletedImages: ', deletedImages);
+  // 再删除文章
   deleteArticle(record.id).then(res => {
     if (res.success && res.result) {
       const index = dataSource.value.findIndex(item => item.id === record.id);
@@ -104,13 +102,10 @@ defineExpose({
     <ArticleList
       :dataSource="dataSource"
       :loading="initLoading"
-      :hiddenExtra="hiddenExtra"
-      :hiddenInfo="hiddenExtra"
-      :hiddenStoreNum="hiddenStoreNum"
-      :disabledFavour="disabledFavour"
+      :itemConfig="itemConfig"
       @updateItem="handleupdateItem"
     >
-      <template #actions="{ row }" v-if="!props.hiddenActions">
+      <template #actions="{ row }" v-if="!props.itemConfig?.hiddenActions">
         <div class="actions-wrap">
           <a-button type="text" @click.stop="handleEdit(row)"><icon-edit /></a-button>
           <a-button type="text" @click.stop="handleDelete(row)"><icon-delete /></a-button>

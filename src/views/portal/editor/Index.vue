@@ -5,7 +5,7 @@ import { computed, ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { t } from '@/locale';
-import { getDeletedImage } from '@/components/editor/utils';
+import { compareDeletedImage } from '@/components/editor/utils';
 import { getArticle, updateArticle, insertArticle, ArticleMode } from '@/apis/article';
 
 import RichEditor from '@/components/editor/rich/RichEditor.vue';
@@ -52,7 +52,7 @@ const saveData = (contetnt: string) => {
 
 const handlePublish = () => {
   const contetnt = isMdMode.value ? mdContent.value : richContent.value;
-  const deletedImages = getDeletedImage(contetnt, initContent, isMdMode.value);
+  const deletedImages = compareDeletedImage(contetnt, initContent, isMdMode.value);
   console.log('deletedImages: ', deletedImages);
   saveData(contetnt).then(_res => {
     // if (res.success) {

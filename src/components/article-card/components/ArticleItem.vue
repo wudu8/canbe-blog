@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {});
 
 const ArticleTitleRef = ref<InstanceType<typeof ArticleTitle>>();
 const appStore = useAppStore();
-const { hiddenExtra, hiddenInfo } = inject<ArticleListContext>(ArticleListToken) ?? {};
+const { itemConfig } = inject<ArticleListContext>(ArticleListToken) ?? {};
 
 const handleClick = () => {
   ArticleTitleRef.value?.click();
@@ -31,20 +31,23 @@ const classes = useClasses('article-list-item');
     <a-list-item-meta>
       <template #title>
         <div :class="{ [`${classes}-title`]: true, reverse: appStore.isMobile }">
-          <template v-if="!hiddenInfo">
+          <template v-if="!itemConfig?.hiddenInfo">
             <ArticleInfo :item="props.item" />
           </template>
           <ArticleTitle ref="ArticleTitleRef" :item="props.item" />
         </div>
       </template>
       <template #description>
-        <div :class="[`${classes}-description`, 'single-row-ellipsis']">
+        <div
+          v-if="props.item.description"
+          :class="[`${classes}-description`, 'single-row-ellipsis']"
+        >
           {{ props.item.description }}
         </div>
         <ViewAction :item="props.item" />
       </template>
     </a-list-item-meta>
-    <template #extra v-if="props.item.thumb && !hiddenExtra">
+    <template #extra v-if="props.item.thumb && !itemConfig?.hiddenExtra">
       <img :class="`${classes}-img`" :src="props.item.thumb" />
     </template>
     <template #actions v-if="$slots.actions">

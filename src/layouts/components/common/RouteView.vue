@@ -21,7 +21,17 @@ const isHome = computed(() => currentRouter.fullPath === pathEnum.home);
 
 <template>
   <div :class="{ [contentClasses]: props.haveClass }">
-    <router-view v-if="!isHome" />
-    <Home v-else />
+    <router-view
+      v-if="!isHome"
+      :class="[`${contentClasses}-left`]"
+      name="LeftSidebar"
+    ></router-view>
+    <router-view v-if="!isHome" :class="[`${contentClasses}-content`]" />
+    <router-view
+      v-if="!isHome"
+      :class="[`${contentClasses}-right`]"
+      name="RightSidebar"
+    ></router-view>
+    <Home v-if="isHome" />
   </div>
 </template>

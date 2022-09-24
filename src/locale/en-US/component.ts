@@ -1,4 +1,6 @@
 export default {
+  'component.article.card.no_title': '无标题',
+  'component.article.action.update_time': '最后一次更新时间',
   'component.article.action.view': '阅读数',
   'component.article.action.like': '点赞数',
   'component.article.action.comment': '评论数',

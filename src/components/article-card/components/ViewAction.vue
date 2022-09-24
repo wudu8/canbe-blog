@@ -17,7 +17,7 @@ const articleContext = inject<ArticleListContext>(ArticleListToken);
 
 const classes = useClasses('view-actions-list');
 const handleLike = (e: Event) => {
-  if (articleContext?.disabledFavour) {
+  if (articleContext?.itemConfig?.disabledFavour) {
     return;
   }
   e.stopPropagation();
@@ -36,35 +36,44 @@ const handleLike = (e: Event) => {
   <div :class="classes">
     <a-space size="large">
       <ActionItem
-        :label="props.item.readingNum"
-        :title="$t('component.article.action.view')"
+        v-if="!articleContext?.itemConfig?.hiddenActionTime"
+        :label="props.item.updateTime"
+        :title="$t('component.article.action.update_time')"
         :disabled="true"
       >
-        <icon-eye />
       </ActionItem>
-      <ActionItem
-        :label="props.item.favourNum"
-        :title="$t('component.article.action.like')"
-        :disabled="articleContext?.disabledFavour"
-        @click="handleLike"
-      >
-        <icon-thumb-up />
-      </ActionItem>
-      <ActionItem
-        :label="props.item.commentNum"
-        :title="$t('component.article.action.comment')"
-        :disabled="true"
-      >
-        <icon-message />
-      </ActionItem>
-      <ActionItem
-        v-if="!articleContext?.hiddenStoreNum"
-        :label="props.item.storeNum"
-        :title="$t('component.article.action.store')"
-        :disabled="true"
-      >
-        <icon-star />
-      </ActionItem>
+      <template v-if="!articleContext?.itemConfig?.hiddenStatistics">
+        <ActionItem
+          :label="props.item.readingNum"
+          :title="$t('component.article.action.view')"
+          :disabled="true"
+        >
+          <icon-eye />
+        </ActionItem>
+        <ActionItem
+          :label="props.item.favourNum"
+          :title="$t('component.article.action.like')"
+          :disabled="articleContext?.itemConfig?.disabledFavour"
+          @click="handleLike"
+        >
+          <icon-thumb-up />
+        </ActionItem>
+        <ActionItem
+          :label="props.item.commentNum"
+          :title="$t('component.article.action.comment')"
+          :disabled="true"
+        >
+          <icon-message />
+        </ActionItem>
+        <ActionItem
+          v-if="!articleContext?.itemConfig?.hiddenStoreNum"
+          :label="props.item.storeNum"
+          :title="$t('component.article.action.store')"
+          :disabled="true"
+        >
+          <icon-star />
+        </ActionItem>
+      </template>
     </a-space>
   </div>
 </template>

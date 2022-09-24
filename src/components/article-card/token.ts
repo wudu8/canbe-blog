@@ -1,11 +1,8 @@
-import type { ArticleDataSource } from './types';
+import type { ArticleDataSource, ArticleItemConfig } from './types';
 
 export interface ArticleListContext {
   updateItem: (record: ArticleDataSource) => void;
-  hiddenExtra: boolean;
-  hiddenInfo: boolean;
-  hiddenStoreNum: boolean;
-  disabledFavour: boolean;
+  itemConfig?: ArticleItemConfig;
 }
 
 export const ArticleListToken = Symbol('article-list');

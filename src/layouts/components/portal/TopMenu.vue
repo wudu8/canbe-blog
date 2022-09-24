@@ -108,7 +108,8 @@ const handleSelect = (value: VKey) => {
     background: none;
     color: @primary-color;
     padding: 0;
-    font-size: 15px;
+    font-size: 18px;
+    padding-left: 8px;
 
     .arco-icon {
       transition: all 0.3s;

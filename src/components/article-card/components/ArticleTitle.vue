@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import type { ArticleListContext } from '../token';
+
+import { computed, ref, inject } from 'vue';
+import { t } from '@/locale';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
 import { ArticleDataSource } from '../types';
+import { ArticleListToken } from '../token';
 
 interface Props {
   item: ArticleDataSource;
@@ -14,9 +18,12 @@ const props = withDefaults(defineProps<Props>(), {
 const itemPushRef = ref<HTMLElement>();
 const classes = useClasses('item-title');
 const appStore = useAppStore();
+const articleContext = inject<ArticleListContext>(ArticleListToken);
 
-const title = computed(() => props.item.blogTitle);
-const articlePath = computed(() => '/article/details/' + props.item.id);
+const title = computed(() => props.item.blogTitle ?? t('component.article.card.no_title'));
+const articlePath = computed(
+  () => articleContext?.itemConfig?.getHref?.(props.item) ?? '/article/details/' + props.item.id
+);
 const beforeTag = computed(() => props.item.beforeTag);
 const afterTag = computed(() => props.item.afterTag);
 
@@ -33,8 +40,8 @@ defineExpose({
   <div :class="{ [classes]: true, 'mobile-title': appStore.isMobile }">
     <a ref="itemPushRef" :href="`${articlePath}`" target="_blank" :class="`${classes}-href`">
       <a-tag v-if="beforeTag && showTag" :color="beforeTag.color" size="small" class="before-tag">
-        {{ beforeTag.label }} </a-tag
-      >v
+        {{ beforeTag.label }}
+      </a-tag>
       <span :class="`${classes}-href-ellipsis`">
         {{ title }}
       </span>
