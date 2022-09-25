@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import { useClasses } from '@/hooks';
 import { ArticleDataSource } from '../types';
 

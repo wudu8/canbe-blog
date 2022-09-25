@@ -7,14 +7,10 @@
 import type { Plugin } from 'vite';
 
 import Components from 'unplugin-vue-components/vite';
-import AutoImport from 'unplugin-auto-import/vite';
 import { ArcoResolver } from 'unplugin-vue-components/resolvers';
 
 export default function configArcoResolverPlugin(): Plugin[] {
   const arcoResolverPlugin = [
-    AutoImport({
-      resolvers: [ArcoResolver()]
-    }),
     Components({
       dirs: [], // Avoid parsing src/components.  避免解析到src/components
       deep: false,

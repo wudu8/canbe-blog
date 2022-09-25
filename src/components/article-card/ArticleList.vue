@@ -2,7 +2,6 @@
 import type { ArticleDataSource } from './types';
 import type { ArticleListContext } from './token';
 
-import { defineComponent, provide } from 'vue';
 import { merge } from 'lodash-es';
 import { useClasses } from '@/hooks';
 

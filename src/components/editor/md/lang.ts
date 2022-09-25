@@ -9,28 +9,47 @@ interface Locales {
 
 function stripPrefixes(obj: Record<LocaleEnum, SafeAny>) {
   return Object.entries(obj).map(([_key, value]) => {
-    // p[key.split('/').slice(-1)[0].replace('.json', '')] = value;
-    // console.log(p)
-    return value.default as Record<string, string>;
+    return value as Record<string, string>;
   })[0];
 }
 
 export default function getLocales(currentLocale: LocaleEnum): Locales {
   const locales = {} as Locales;
   if (currentLocale == LocaleEnum.zhCN) {
-    locales.math = stripPrefixes(import.meta.globEager(`@bytemd/plugin-math/locales/zh_Hans.json`));
-    locales.gfm = stripPrefixes(import.meta.globEager(`@bytemd/plugin-gfm/locales/zh_Hans.json`));
-    locales.mermaid = stripPrefixes(
-      import.meta.globEager(`@bytemd/plugin-mermaid/locales/zh_Hans.json`)
+    locales.math = stripPrefixes(
+      import.meta.glob('@bytemd/plugin-math/locales/zh_Hans.json', {
+        import: 'default',
+        eager: true
+      })
     );
-    locales.bytemd = stripPrefixes(import.meta.globEager(`bytemd/locales/zh_Hans.json`));
+    locales.gfm = stripPrefixes(
+      import.meta.glob('@bytemd/plugin-gfm/locales/zh_Hans.json', {
+        import: 'default',
+        eager: true
+      })
+    );
+    locales.mermaid = stripPrefixes(
+      import.meta.glob('@bytemd/plugin-mermaid/locales/zh_Hans.json', {
+        import: 'default',
+        eager: true
+      })
+    );
+    locales.bytemd = stripPrefixes(
+      import.meta.glob('bytemd/locales/zh_Hans.json', { import: 'default', eager: true })
+    );
   } else if (currentLocale == LocaleEnum.enUS) {
-    locales.math = stripPrefixes(import.meta.globEager(`@bytemd/plugin-math/locales/en.json`));
-    locales.gfm = stripPrefixes(import.meta.globEager(`@bytemd/plugin-gfm/locales/en.json`));
-    locales.mermaid = stripPrefixes(
-      import.meta.globEager(`@bytemd/plugin-mermaid/locales/en.json`)
+    locales.math = stripPrefixes(
+      import.meta.glob('@bytemd/plugin-math/locales/en.json', { import: 'default', eager: true })
     );
-    locales.bytemd = stripPrefixes(import.meta.globEager(`bytemd/locales/en.json`));
+    locales.gfm = stripPrefixes(
+      import.meta.glob('@bytemd/plugin-gfm/locales/en.json', { import: 'default', eager: true })
+    );
+    locales.mermaid = stripPrefixes(
+      import.meta.glob('@bytemd/plugin-mermaid/locales/en.json', { import: 'default', eager: true })
+    );
+    locales.bytemd = stripPrefixes(
+      import.meta.glob('bytemd/locales/en.json', { import: 'default', eager: true })
+    );
   }
   return locales;
 }

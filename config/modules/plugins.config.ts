@@ -10,6 +10,8 @@ import stylelintPlugin from 'vite-plugin-stylelint';
 import windiCSS from 'vite-plugin-windicss';
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import AutoImport from 'unplugin-auto-import/vite';
+import { ArcoResolver } from 'unplugin-vue-components/resolvers';
 
 import configArcoResolverPlugin from './plugin/arcoResolver';
 import configCompressPlugin from './plugin/compress';
@@ -39,6 +41,22 @@ export function createVitePlugins(
       configStyleImportPlugin(),
       // 按需自动导入组件库
       configArcoResolverPlugin(),
+      // 自动导入，无需再手动引入下面包的函数
+      AutoImport({
+        resolvers: [ArcoResolver()],
+        // 目标文件
+        include: [
+          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+          /\.vue$/,
+          /\.vue\?vue/ // .vue
+        ],
+        imports: ['vue', 'vue-router', '@vueuse/core'],
+        eslintrc: {
+          enabled: false, // <-- this
+          filepath: './.eslintrc-auto-import.json', // Default `./.eslintrc-auto-import.json`
+          globalsPropValue: true
+        }
+      }),
       // gzip压缩
       configCompressPlugin(env, isBuild),
       // html注入env变量

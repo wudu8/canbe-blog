@@ -1,5 +1,4 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
 import { siderCardProps } from './types';
 import Spin from '../box-spin/Spin.vue';
 

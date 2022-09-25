@@ -1,8 +1,6 @@
 /**
  * 判断当前设备类型
  */
-import { onMounted, onBeforeMount, onBeforeUnmount } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
 import { useAppStore } from '@/store';
 import { addEventListen, removeEventListen } from '@/utils/event';
 

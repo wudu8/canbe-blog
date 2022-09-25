@@ -2,7 +2,6 @@
 import type { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor';
 
 import '@wangeditor/editor/dist/css/style.css'; // 引入 css
-import { onBeforeUnmount, computed, shallowRef, watch } from 'vue';
 import { merge } from 'lodash-es';
 import { i18nChangeLanguage } from '@wangeditor/editor';
 import { useControlledPropByEmit } from '@/hooks/props/useControlledProp';

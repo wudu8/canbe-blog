@@ -1,5 +1,3 @@
-import { ref } from 'vue';
-
 export function useLoading(initValue = false) {
   const loading = ref(initValue);
   const setLoading = (value: boolean) => {

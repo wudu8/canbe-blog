@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import type { RouteRecordRaw } from 'vue-router';
 
-import { computed } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
 import { isString } from 'lodash-es';
 import { useAppStore } from '@/store';
 import { useClasses, useMenuTree } from '@/hooks';

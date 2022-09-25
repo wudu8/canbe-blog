@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { RouterView, useRoute } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { pathEnum } from '@/router';
 

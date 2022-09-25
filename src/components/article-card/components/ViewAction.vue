@@ -2,7 +2,6 @@
 import type { ArticleListContext } from '../token';
 import type { ArticleDataSource } from '../types';
 
-import { inject } from 'vue';
 import { useClasses } from '@/hooks';
 import { getArticleIncrComment } from '@/apis/article';
 import { ArticleListToken } from '../token';

@@ -2,7 +2,6 @@ import type { RouteRecordNormalized, RouteRecordRaw } from 'vue-router';
 import type { ComputedRef } from 'vue';
 import type { AppMenu } from '@/router/appMenus';
 
-import { computed } from 'vue';
 import { isEmpty } from 'lodash-es';
 import { usePermission } from './permission';
 

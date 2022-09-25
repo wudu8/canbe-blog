@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router';
 import { t } from '@/locale';
 import { useControlledPropByEmit } from '@/hooks';
 import { useAppStore } from '@/store';

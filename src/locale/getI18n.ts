@@ -9,15 +9,15 @@ export interface I18nMessagesContext {
 export default function getI18nMessage(): I18nMessagesContext {
   let enMessages: LocaleMessageDictionary<VueMessageType> = {};
   let zhMessages: LocaleMessageDictionary<VueMessageType> = {};
-  const enModules = import.meta.globEager('./en-US/*.ts');
-  const zhModules = import.meta.globEager('./zh-CN/*.ts');
+  const enModules = import.meta.glob('./en-US/*.ts', { import: 'default', eager: true });
+  const zhModules = import.meta.glob('./zh-CN/*.ts', { import: 'default', eager: true });
 
   Object.keys(enModules).forEach(key => {
-    const mod: LocaleMessageDictionary = enModules[key].default || {};
+    const mod = (enModules[key] || {}) as LocaleMessageDictionary;
     enMessages = merge(enMessages, mod);
   });
   Object.keys(zhModules).forEach(key => {
-    const mod = zhModules[key].default || {};
+    const mod = zhModules[key] || {};
     zhMessages = merge(zhMessages, mod);
   });
   return {

@@ -14,10 +14,17 @@
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
-      "@images/*": ["src/assets/images/*"],
+      "@images/*": ["src/assets/images/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "typings/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "typings/*.d.ts",
+    "./auto-imports.d.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

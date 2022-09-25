@@ -4,8 +4,6 @@ import type { ArticleItemConfig } from '@/components/article-card';
 
 import type { PortalLayoutProvide } from '@/layouts/const';
 
-import { ref, watch, nextTick } from 'vue';
-import { useRouter } from 'vue-router';
 import { pathEnum } from '@/router/path';
 import { useClasses } from '@/hooks';
 import { getArticleList, deleteArticle } from '@/apis/article';

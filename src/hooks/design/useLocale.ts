@@ -1,7 +1,6 @@
 import type { ComputedRef } from 'vue';
 import type { LocaleEnum } from '@/locale';
 
-import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Message } from '@arco-design/web-vue';
 import { setLocalStorage } from '@/utils/locale';

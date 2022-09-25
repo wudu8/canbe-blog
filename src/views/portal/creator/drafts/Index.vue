@@ -2,8 +2,6 @@
 import type { ArticleData } from '@/apis/article/types';
 import type { ArticleDataSource, ArticleItemConfig } from '@/components/article-card';
 
-import { ref, onMounted, reactive } from 'vue';
-import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store';
 import { useClasses } from '@/hooks';
 import { creatorLayoutToken } from '@/layouts/const';

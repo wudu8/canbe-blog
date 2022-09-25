@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { ArticleData } from '@/apis/article/types';
 
-import { computed, ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { t } from '@/locale';
 import { compareDeletedImage } from '@/components/editor/utils';

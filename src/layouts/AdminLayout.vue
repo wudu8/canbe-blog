@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import Main from './components/Main.vue';
+import Main from './components/admin/Main.vue';
 
 const selectedKeys = ref<string[]>(['2']);
 </script>

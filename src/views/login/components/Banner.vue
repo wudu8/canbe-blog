@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { t } from '@/locale';
 import bannerImage from '@/assets/images/login-banner.png';
 

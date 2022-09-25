@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store';
 import { pathEnum } from '@/router/path';
 

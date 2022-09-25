@@ -1,8 +1,6 @@
 /**
  * 暗黑模式/亮白模式切换
  */
-import { computed } from 'vue';
-import { useDark, useToggle } from '@vueuse/core';
 import { useAppStore } from '@/store';
 
 export function useTheme() {
@@ -10,10 +8,10 @@ export function useTheme() {
 
   const isDark = useDark({
     selector: 'body',
-    attribute: 'arco-theme',
+    attribute: `${import.meta.env.VITE_APP_PREFIX}-theme`,
     valueDark: 'dark',
     valueLight: 'light',
-    storageKey: 'arco-theme',
+    storageKey: `${import.meta.env.VITE_APP_PREFIX}-theme`,
     onChanged(dark: boolean) {
       // overridden default behavior
       appStore.toggleTheme(dark);
@@ -21,7 +19,7 @@ export function useTheme() {
   });
   const toggleTheme = useToggle(isDark);
 
-  const theme = computed(() => appStore.theme);
+  const theme = computed(() => appStore.settings.theme);
 
   const handleToggleTheme = () => {
     toggleTheme();

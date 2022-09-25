@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 import { useClasses } from '@/hooks';
 import { useUserStore } from '@/store';
 import { t } from '@/locale';

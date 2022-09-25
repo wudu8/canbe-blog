@@ -1,6 +1,5 @@
 import type { ExtractInnerPropTypes, ExtractPublicPropTypes } from '@/utils/props';
-
-import { PropType } from 'vue';
+import type { PropType } from 'vue';
 
 export interface SiderCardData {
   /** 文章类型唯一key */

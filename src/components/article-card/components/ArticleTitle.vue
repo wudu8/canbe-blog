@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { ArticleListContext } from '../token';
 
-import { computed, ref, inject } from 'vue';
 import { t } from '@/locale';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';

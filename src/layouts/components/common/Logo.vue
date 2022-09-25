@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 import { useAppStore } from '@/store';
 import { useClasses } from '@/hooks';
 import { pathEnum } from '@/router/path';

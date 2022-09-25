@@ -5,8 +5,6 @@
 import type { MaybeRef } from '@vueuse/shared';
 import type { ComputedRef, Ref } from 'vue';
 
-import { unref, isRef, computed } from 'vue';
-
 const appPrefix = import.meta.env.VITE_APP_PREFIX;
 
 export function useClasses(classes: Ref<string>): ComputedRef<string>;

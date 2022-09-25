@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { reactive, computed } from 'vue';
 import { useControlledPropByEmit } from '@/hooks/props/useControlledProp';
 import { useLocale } from '@/hooks/design/useLocale';
 import getLocales from './lang';

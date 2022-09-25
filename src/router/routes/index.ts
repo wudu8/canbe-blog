@@ -5,18 +5,18 @@ import { adminwhiteRoutes, whiteRoutes } from '../guards/whiteRoutesList';
 import portalCommon from './commons/portalCommon';
 import creator from './portal/creator';
 
-const portalModules = import.meta.globEager('./portal/*.ts');
-const adminModules = import.meta.globEager('./modules/*.ts'),
+const portalModules = import.meta.glob('./portal/*.ts', { import: 'default', eager: true });
+const adminModules = import.meta.glob('./modules/*.ts', { import: 'default', eager: true }),
   moduleRoutes: RouteRecordRaw[] = [];
 
 Object.keys(portalModules).forEach(key => {
-  const mod = portalModules[key].default || {},
+  const mod = portalModules[key] || {},
     modList = Array.isArray(mod) ? [...mod] : [mod];
 
   moduleRoutes.push(...modList);
 });
 Object.keys(adminModules).forEach(key => {
-  const mod = adminModules[key].default || {},
+  const mod = adminModules[key] || {},
     modList = Array.isArray(mod) ? [...mod] : [mod];
 
   moduleRoutes.push(...modList);

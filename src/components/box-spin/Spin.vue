@@ -1,6 +1,4 @@
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-
 import { Spin } from '@arco-design/web-vue';
 import { useClasses } from '@/hooks';
 

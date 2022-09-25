@@ -2,7 +2,6 @@
 import type { ArticleDataSource } from '../types';
 import type { ArticleListContext } from '../token';
 
-import { ref, inject } from 'vue';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
 import { ArticleListToken } from '../token';

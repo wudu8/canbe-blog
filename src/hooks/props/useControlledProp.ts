@@ -1,7 +1,6 @@
 import type { ComputedRef } from 'vue';
-import { computed, shallowRef, toRaw, watch, useAttrs } from 'vue';
-import { isFunction } from 'lodash-es';
 
+import { isFunction } from 'lodash-es';
 import { callEmit } from '@/hooks/utils/callEmit';
 
 export function useControlledProp<T, K extends keyof T>(

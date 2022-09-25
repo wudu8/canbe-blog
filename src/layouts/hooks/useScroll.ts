@@ -1,8 +1,5 @@
 import type { Ref } from 'vue';
 
-import { inject, watch, onMounted, ref } from 'vue';
-import { useScroll } from '@vueuse/core';
-
 /**
  * 根据layout的token监听滚动事件，用以使用layout布局的滚动监听
  * @param layoutToken provide token

@@ -30,12 +30,14 @@ const i18n = createI18n({
 //导出语言切换使得在其他js文件中也能使用多语言
 export function t(val: string): string {
   if (!i18n) {
+    // eslint-disable-next-line no-console
     console.error("I18N must be initialized before use 't'");
   }
   try {
     const { t } = i18n.global;
     return t(val);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error(error);
     return val;
   }

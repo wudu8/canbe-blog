@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { SiderCardData } from '@/components/article-type';
 
-import { ref, onMounted } from 'vue';
 import { useClasses } from '@/hooks';
 import { getArticleType } from '@/apis/article';
 

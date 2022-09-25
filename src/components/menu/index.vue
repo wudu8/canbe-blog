@@ -1,7 +1,5 @@
 <script lang="tsx">
-import { defineComponent, ref, computed } from 'vue';
-import { useRoute, useRouter, RouteRecordRaw } from 'vue-router';
-import type { RouteMeta } from 'vue-router';
+import type { RouteMeta, RouteRecordRaw } from 'vue-router';
 import { useAppStore } from '@/store';
 import { listenerRouteChange } from '@/utils/route-listener';
 import { openWindow, regexUrl } from '@/utils/menuUtils';

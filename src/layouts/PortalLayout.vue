@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { PortalLayoutProvide } from './const';
 
-import { provide, ref } from 'vue';
 import { useResponsive, useClasses, useLocale } from '@/hooks';
 import { useAppStore } from '@/store';
 import { portalLayoutToken } from './const';

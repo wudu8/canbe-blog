@@ -1,5 +1,5 @@
 import { defineConfig, loadEnv } from 'vite';
-import * as path from 'path';
+import { resolve } from 'path';
 
 import {
   createViteCss,
@@ -22,8 +22,8 @@ export default defineConfig(({ command, mode }) => {
     envDir: envDir,
     resolve: {
       alias: {
-        '@images': path.resolve(__dirname, './src/assets/images'),
-        '@': path.resolve(__dirname, './src')
+        '@images': resolve(__dirname, './src/assets/images'),
+        '@': resolve(__dirname, './src')
       }
     },
     define: {
