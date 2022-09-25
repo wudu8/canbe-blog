@@ -12,6 +12,7 @@ export default {
   'portal.creator_column.title': '专栏管理',
   'portal.drafts.title': '草稿箱',
   'route.login.title': '登录',
+  'route.article_detail.title': '文章详情',
   'route.msg.comment': '评论消息',
   'route.msg.like_and_store': '赞和收藏',
   'route.msg.system': '系统通知'

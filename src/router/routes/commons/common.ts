@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router';
 import { pathEnum } from '@/router/path';
-import { EmptyLayout } from '@/layouts';
+import { EmptyLayout, PortalLayout } from '@/layouts';
 import { t } from '@/locale';
 
 const routes: Array<RouteRecordRaw> = [
@@ -18,6 +18,23 @@ const routes: Array<RouteRecordRaw> = [
           sort: 1
         },
         component: () => import('@/views/login/Index.vue')
+      }
+    ]
+  },
+  {
+    path: '/common_portal',
+    name: 'common_portal',
+    component: PortalLayout,
+    children: [
+      {
+        path: pathEnum.detailsArticle,
+        name: 'details-article',
+        meta: {
+          title: t('route.article_detail.title'),
+          browserTitle: '',
+          sort: 1
+        },
+        component: () => import('@/views/portal/article/Index.vue')
       }
     ]
   }

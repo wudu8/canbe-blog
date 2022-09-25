@@ -4,6 +4,7 @@ import type { ArticleListContext } from '../token';
 import { t } from '@/locale';
 import { useClasses } from '@/hooks';
 import { useAppStore } from '@/store';
+import { pathEnum } from '@/router/path';
 import { ArticleDataSource } from '../types';
 import { ArticleListToken } from '../token';
 
@@ -17,12 +18,21 @@ const props = withDefaults(defineProps<Props>(), {
 const itemPushRef = ref<HTMLElement>();
 const classes = useClasses('item-title');
 const appStore = useAppStore();
+const router = useRouter();
+
 const articleContext = inject<ArticleListContext>(ArticleListToken);
 
 const title = computed(() => props.item.blogTitle ?? t('component.article.card.no_title'));
-const articlePath = computed(
-  () => articleContext?.itemConfig?.getHref?.(props.item) ?? '/article/details/' + props.item.id
-);
+const articlePath = computed(() => {
+  const customHref = articleContext?.itemConfig?.getHref?.(props.item);
+  if (customHref) {
+    return customHref;
+  }
+  const route = router.resolve({
+    path: pathEnum.detailsArticle.replace(':id', props.item.id)
+  });
+  return route.href;
+});
 const beforeTag = computed(() => props.item.beforeTag);
 const afterTag = computed(() => props.item.afterTag);
 

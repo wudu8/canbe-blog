@@ -9,6 +9,10 @@ import { pathEnum } from '@/router/path';
 
 import ArticleList from '@/views/business/ArticleList.vue';
 
+const userStore = useUserStore();
+const classes = useClasses('creator-article-list');
+const router = useRouter();
+
 const getHref = (record: ArticleDataSource) => {
   const route = router.resolve({
     path: pathEnum.editArticle,
@@ -32,10 +36,6 @@ const itemConfig = reactive<ArticleItemConfig>({
   disabledFavour: true,
   getHref: getHref
 });
-
-const userStore = useUserStore();
-const classes = useClasses('creator-article-list');
-const router = useRouter();
 
 const loadData = () => {
   if (userStore.userInfo.id) {

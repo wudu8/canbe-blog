@@ -41,7 +41,11 @@ const adminPathEnum = {};
 // 公共路由
 const commonPathEnum = {
   /** 登录页面 */
-  login: '/login'
+  login: '/login',
+
+  /** 门户公共路由 */
+  /** 文章详情页 */
+  detailsArticle: '/article/details/:id'
 };
 
 // 异常跳转路由
