@@ -16,6 +16,11 @@ export enum DeviceType {
   desktop = 'desktop'
 }
 
+/**
+ * @description: 响应式hook，识别当前屏幕大小，判定是移动端或电脑端
+ * @param {boolean} immediate
+ * @return {*}
+ */
 export function useResponsive(immediate?: boolean) {
   const appStore = useAppStore();
   function resizeHandler() {
