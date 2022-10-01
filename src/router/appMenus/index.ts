@@ -1,3 +1,10 @@
+/*
+ * @Author: zkr
+ * @Date: 2022-09-19 14:16:36
+ * @LastEditors: zkr
+ * @LastEditTime: 2022-09-30 11:27:59
+ * @FilePath: \canbe-blog\src\router\appMenus\index.ts
+ */
 import type {
   RouteRecordRaw,
   RouteMeta,

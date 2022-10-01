@@ -1,3 +1,10 @@
+<!--
+ * @Author: zkr
+ * @Date: 2022-08-07 18:18:51
+ * @LastEditors: zkr
+ * @LastEditTime: 2022-09-29 12:28:44
+ * @FilePath: \canbe-blog\src\layouts\PortalLayout.vue
+-->
 <script lang="ts" setup>
 import type { PortalLayoutProvide } from './const';
 

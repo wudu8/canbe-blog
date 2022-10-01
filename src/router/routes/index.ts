@@ -1,3 +1,10 @@
+/*
+ * @Author: zkr
+ * @Date: 2022-08-07 18:18:51
+ * @LastEditors: zkr
+ * @LastEditTime: 2022-09-30 11:28:05
+ * @FilePath: \canbe-blog\src\router\routes\index.ts
+ */
 import { sortRoutes } from '@/router/utils';
 import { concat } from 'lodash-es';
 import { type RouteRecordRaw } from 'vue-router';

@@ -1,3 +1,11 @@
+/*
+ * @Author: zkr
+ * @Description: vue3实战项目
+ * @Date: 2022-08-07 18:18:51
+ * @LastEditors: zkr
+ * @LastEditTime: 2022-09-29 16:05:23
+ * @FilePath: \canbe-blog\src\router\path.ts
+ */
 /**
  * 路由path
  */
@@ -28,6 +36,20 @@ export const creatorPathEnum = {
   creatorColumn: '/creator/column'
 };
 
+// 门户 个人中心 路由
+const personalPathEnum = {
+  /* 个人中心 */
+  personal: '/user',
+  /* 个人中心首页 */
+  personalHome: '/user/home',
+  /* 修改资料 */
+  personalSetting: '/user/settings',
+  /* 修改个人信息 */
+  infoSetting: '/user/settings/profile',
+  /* 修改账户信息 */
+  accountSetting: '/user/settings/account'
+};
+
 // 门户权限控制路由
 const portalPathEnum = {
   /** 编辑文章页面 */
@@ -56,6 +78,7 @@ const exceptionPathEnum = {
 export const pathEnum = {
   ...creatorPathEnum,
   ...portalHeaderPathEnum,
+  ...personalPathEnum,
   ...portalPathEnum,
   ...adminPathEnum,
   ...exceptionPathEnum,
