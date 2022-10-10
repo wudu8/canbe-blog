@@ -1,3 +1,10 @@
+/*
+ * @Author: zkr
+ * @Date: 2022-08-27 14:35:50
+ * @LastEditors: zkr
+ * @LastEditTime: 2022-09-22 17:06:40
+ * @FilePath: \canbe-blog\src\locale\zh-CN\component.ts
+ */
 export default {
   'component.article.card.no_title': '无标题',
   'component.article.action.update_time': '最后一次更新时间',

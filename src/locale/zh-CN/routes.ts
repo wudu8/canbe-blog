@@ -1,3 +1,10 @@
+/*
+ * @Author: zkr
+ * @Date: 2022-08-27 14:35:50
+ * @LastEditors: zkr
+ * @LastEditTime: 2022-09-29 16:12:07
+ * @FilePath: \canbe-blog\src\locale\zh-CN\routes.ts
+ */
 export default {
   'portal.edit_article.title': '写文章',
   'portal.home.title': '博客社区',
@@ -15,5 +22,8 @@ export default {
   'route.article_detail.title': '文章详情',
   'route.msg.comment': '评论消息',
   'route.msg.like_and_store': '赞和收藏',
-  'route.msg.system': '系统通知'
+  'route.msg.system': '系统通知',
+  'portal.personal_home.title': '个人中心',
+  'portal.personal_home.info_setting': '个人信息',
+  'portal.personal_home.account_setting': '账号设置'
 };
