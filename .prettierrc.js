@@ -2,8 +2,8 @@
  * @Author: zkr
  * @Description: vue3实战项目
  * @Date: 2022-08-07 18:18:51
- * @LastEditors: zkr
- * @LastEditTime: 2022-09-19 14:23:58
+ * @LastEditors: wudu8 y2386166796@163.com
+ * @LastEditTime: 2025-09-18 23:45:23
  * @FilePath: \canbe-blog\.prettierrc.js
  */
 module.exports = {

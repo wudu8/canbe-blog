@@ -1,3 +1,11 @@
+/*
+ * @Author: wudu8 y2386166796@163.com
+ * @Date: 2023-11-25 19:39:36
+ * @LastEditors: wudu8 y2386166796@163.com
+ * @LastEditTime: 2025-09-18 23:39:01
+ * @FilePath: \canbe-blog\config\modules\plugins.config.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import type { Plugin, PluginOption } from 'vite';
 
 import * as path from 'path';
@@ -8,7 +16,6 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import eslintPlugin from 'vite-plugin-eslint';
 import stylelintPlugin from 'vite-plugin-stylelint';
 import windiCSS from 'vite-plugin-windicss';
-import vueI18n from '@intlify/vite-plugin-vue-i18n';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import AutoImport from 'unplugin-auto-import/vite';
 import { ArcoResolver } from 'unplugin-vue-components/resolvers';
@@ -26,13 +33,6 @@ export function createVitePlugins(
   const definePlugins = {
     plugins: [
       vue(),
-      vueI18n({
-        // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-        // compositionOnly: false,
-
-        // you need to set i18n resource including paths !
-        include: path.resolve(__dirname, './src/locales/**')
-      }),
       // vue jsx语法支持
       vueJsx(),
       // windicss

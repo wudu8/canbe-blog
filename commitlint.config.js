@@ -13,6 +13,6 @@
 // test: 新增测试用例或是更新现有测试
 // revert: 回滚某个更早以前的提交
 // chore: 不属于以上类型的其余类型复制代码
-module.exports = {
+export default {
   extends: ['@commitlint/config-conventional']
 };

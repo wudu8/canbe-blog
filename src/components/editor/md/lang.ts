@@ -1,3 +1,11 @@
+/*
+ * @Author: wudu8 y2386166796@163.com
+ * @Date: 2023-11-25 19:39:37
+ * @LastEditors: wudu8 y2386166796@163.com
+ * @LastEditTime: 2025-09-18 23:52:56
+ * @FilePath: \canbe-blog\src\components\editor\md\lang.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { LocaleEnum } from '@/locale';
 
 interface Locales {
@@ -35,7 +43,7 @@ export default function getLocales(currentLocale: LocaleEnum): Locales {
       })
     );
     locales.bytemd = stripPrefixes(
-      import.meta.glob('bytemd/locales/zh_Hans.json', { import: 'default', eager: true })
+      import.meta.glob('@bytemd/locales/zh_Hans.json', { import: 'default', eager: true })
     );
   } else if (currentLocale == LocaleEnum.enUS) {
     locales.math = stripPrefixes(

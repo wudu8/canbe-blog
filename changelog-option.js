@@ -1,6 +1,14 @@
-const compareFunc = require('compare-func');
+/*
+ * @Author: wudu8 y2386166796@163.com
+ * @Date: 2023-11-25 19:39:36
+ * @LastEditors: wudu8 y2386166796@163.com
+ * @LastEditTime: 2025-09-18 23:47:15
+ * @FilePath: \canbe-blog\changelog-option.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+import compareFunc from 'compare-func';
 
-module.exports = {
+export default {
   writerOpts: {
     transform: (commit, context) => {
       const issues = [];
